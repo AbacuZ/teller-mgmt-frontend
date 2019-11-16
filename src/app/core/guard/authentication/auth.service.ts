@@ -6,8 +6,17 @@ import { Observable } from 'rxjs/Observable';
 export class AuthService {
 
   private userLoggedIn = new Subject<boolean>();
+  private isLogin: Boolean = false;
 
   constructor() { }
+
+  setLogin() {
+    this.isLogin = true;
+  }
+
+  getLogin() {
+    return this.isLogin;
+  }
 
   setUserLoggedIn(userLoggedIn: boolean) {
     this.userLoggedIn.next(userLoggedIn);

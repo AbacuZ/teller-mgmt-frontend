@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthService } from '@app/core';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   isShowEye: Boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.initForm();
@@ -32,6 +34,11 @@ export class LoginComponent implements OnInit {
   showPassword() {
     this.isShowButton = !this.isShowButton;
     this.isShowEye = !this.isShowEye;
+  }
+
+  login() {
+    this.authService.setLogin();
+    this.router.navigate(['/home']);
   }
 
 }
