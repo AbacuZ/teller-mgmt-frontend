@@ -31,7 +31,7 @@
   font-family: 'krungsri_simple' !important;
 }
 .main-header .navbar {
-  background-color: #ffd503;
+  background-color: #ec068d;
 }
 .main-header .navbar .nav > li > a {
   color: #554242;
@@ -604,7 +604,7 @@ ico_sml_templae.png*/
 .main-header .logo-main {
   background-image: url('../img/logo.png');
   width: 162px;
-  height: 55px;
+  height: 57px;
   padding: 0px;
   margin-top: -15px;
 }
@@ -1649,7 +1649,7 @@ ico_sml_templae.png*/
   font-family: arial, sans-serif;
 }
 .form-control:focus {
-  border-color: #ffd503;
+  border-color: #ff00ff !important;
   box-shadow: none;
 }
 .form-control::-moz-placeholder,
@@ -2866,7 +2866,7 @@ textarea {
   color: #111111;
 }
 .btn-primary {
-  background-color: #ff00ff;
+  background-color: #ec068d;
   /*border-color: darken(@brown, 5%);*/
   color: #ffffff;
   padding: 7px 10px 5px 10px;
@@ -2887,7 +2887,7 @@ textarea {
   -moz-transform: translateY(-1px);
   transform: translateY(-1px);
   background-color: #c3c9d3;
-  border-color: #ff00ff;
+  border-color: #ec068d;
   color: #ffffff;
 }
 .btn-success {
