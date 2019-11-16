@@ -2866,9 +2866,9 @@ textarea {
   color: #111111;
 }
 .btn-primary {
-  background-color: #ffd503;
+  background-color: #ff00ff;
   /*border-color: darken(@brown, 5%);*/
-  color: #756158;
+  color: #ffffff;
   padding: 7px 10px 5px 10px;
   font-weight: bold;
   border-width: 0;
@@ -2887,8 +2887,8 @@ textarea {
   -moz-transform: translateY(-1px);
   transform: translateY(-1px);
   background-color: #c3c9d3;
-  border-color: #e9c200;
-  color: #756158;
+  border-color: #ff00ff;
+  color: #ffffff;
 }
 .btn-success {
   background-color: #00a65a;
