@@ -1,0 +1,57 @@
+.checkbox-normal {
+  margin-top: 0px !important;
+}
+
+.checkbox-normal label:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.checkbox-normal label {
+  padding-left: 0px !important;
+  cursor: pointer !important;
+}
+
+.checkbox-normal-datetypes label {
+  padding-right: 20px !important;
+}
+
+.checkbox-normal-custom-pr label {
+  padding-right: 53px !important;
+}
+
+.checkbox-normal .cr {
+  position: relative;
+  display: block;
+  border: 1px solid #a9a9a9;
+  border-radius: .25em;
+  width: 1.3em;
+  height: 1.3em;
+  float: left;
+  margin-right: .5em;
+}
+
+.checkbox-normal .cr .cr-icon {
+  position: absolute;
+  font-size: .8em;
+  line-height: 0;
+  top: 50%;
+  left: 15%;
+}
+
+.checkbox-normal label input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-normal label input[type="checkbox"]+.cr>.cr-icon {
+  opacity: 0;
+}
+
+.checkbox-normal label input[type="checkbox"]:checked+.cr>.cr-icon {
+  opacity: 1;
+}
+
+.checkbox-normal label input[type="checkbox"]:disabled+.cr {
+  opacity: .5;
+}
