@@ -6,16 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
-import { HomeComponent } from './modules/home/components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { AuthService, AuthGuard } from '@app/core';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     NavbarComponent
   ],
   imports: [
@@ -25,7 +24,10 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
