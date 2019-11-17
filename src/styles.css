@@ -6,3 +6,8 @@
 html, body {
   height: 100%;
 }
+
+.box-header-search {
+  color:#f2f2f2;
+  background-color: #e3007b;
+}
