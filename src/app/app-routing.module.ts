@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '', canActivate: [AuthGuard], children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
+      { path: '', loadChildren: './modules/search/search.module#SearchModule' },
     ]
   },
   { path: 'login', component: LoginComponent, data: { title: 'ล็อคอิน' } },

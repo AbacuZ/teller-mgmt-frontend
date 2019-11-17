@@ -4,9 +4,44 @@
       <a class="navbar-brand" routerLink='/home'>
         <div class="logo-main"></div>
       </a>
+      <span class="navbar-text">Automatic Teller Machine Research</span>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
         <i class="fa fa-bars"></i>
       </button>
+    </div>
+    <ul class="nav navbar-nav single-nav">
+      <li class="nav-border-icon-single">
+        <a routerLink="/search">
+          <i class="fa fa-search" aria-hidden="true"></i> Search
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav single-nav">
+      <li class="nav-border-icon-single">
+        <a routerLink="/audit/auditsearch">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i> Teller Mangement
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav single-nav">
+      <li class="nav-border-icon-single">
+        <a routerLink="/audit/auditsearch">User Mangement</a>
+      </li>
+    </ul>
+
+    <div class="navbar-custom-menu pull-right">
+      <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle nav-border-icon" data-toggle="dropdown" >
+              <i class="fa fa-user-o" aria-hidden="true"></i> Username<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a (click)="authService.logout()">logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
     </div>
   </nav>
 </header>
