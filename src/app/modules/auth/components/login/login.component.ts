@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.setLogin();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/search']);
   }
 
 }

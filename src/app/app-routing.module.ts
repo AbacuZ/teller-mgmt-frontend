@@ -8,10 +8,11 @@ import { AuthGuard } from '@app/core';
 const routes: Routes = [
   {
     path: '', canActivate: [AuthGuard], children: [
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '', redirectTo: '/search', pathMatch: 'full' },
       { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
       { path: '', loadChildren: './modules/search/search.module#SearchModule' },
-      { path: 'user', loadChildren: './modules/user/user.module#UserModule' }
+      { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
+      { path: 'teller-details', loadChildren: './modules/teller-details/teller-details#TellerDetailsModule' }
     ]
   },
   { path: 'login', component: LoginComponent, data: { title: 'ล็อคอิน' } },
