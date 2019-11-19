@@ -11,6 +11,10 @@ import { ListTellerComponent } from './components/list-teller/list-teller.compon
     CommonModule,
     TellerRoutingModule
   ],
-  declarations: [CreateTellerComponent, EditTellerComponent, ListTellerComponent]
+  declarations: [
+    CreateTellerComponent,
+    EditTellerComponent,
+    ListTellerComponent
+  ]
 })
 export class TellerModule { }
