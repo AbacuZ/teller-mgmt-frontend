@@ -11,6 +11,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
       { path: '', loadChildren: './modules/search/search.module#SearchModule' },
+      { path: 'user', loadChildren: './modules/user/user.module#UserModule' }
     ]
   },
   { path: 'login', component: LoginComponent, data: { title: 'ล็อคอิน' } },

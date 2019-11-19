@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './components/search/search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    SearchRoutingModule
+    SearchRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [SearchComponent]
 })

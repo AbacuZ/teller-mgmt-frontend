@@ -22,6 +22,81 @@
               <i class="fa fa-minus"></i></button>
           </div>
         </div>
+        <div class="box-body">
+          <form novalidate [formGroup]="searchForm">
+            <fieldset>
+              <div class="form-group row">
+                <label class="col-xs-1 col-form-label">Search</label>
+                <div class="col-sm-11">
+                  <input 
+                    class="form-control" 
+                    type="text" 
+                    formControlName="text" 
+                    name="text"
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="zone" 
+                  >
+                    <option value="">Zone</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="province" 
+                  >
+                    <option value="">Province</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="district" 
+                  >
+                    <option value="">District</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="brandTeller" 
+                  >
+                    <option value="">Brand Teller</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="versionTeller" 
+                  >
+                    <option value="">Version Teller</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="typeTeller" 
+                  >
+                    <option value="">Type Teller</option>
+                  </select>
+                </div>
+              </div>
+              <hr>
+              <div class="text-right">
+                <button type="button" class="btn btn-default" (click)="reset()">Report</button>
+                <button type="button" class="btn btn-primary" (click)="find()">Search</button>
+                <button type="button" class="btn btn-default" (click)="reset()">Clear</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </section>
     <!-- /.content -->
