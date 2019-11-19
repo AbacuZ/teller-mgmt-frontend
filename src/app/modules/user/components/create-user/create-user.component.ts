@@ -75,6 +75,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     if (this.saveForm(this.createUserForm)) {
       this.subscription = this.userService.createUser().subscribe(result => {
         if (result) {
+          this.userService.clearUserData();
           this.router.navigate(['/user/search']);
         }
       });

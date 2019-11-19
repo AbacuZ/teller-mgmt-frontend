@@ -7,4 +7,14 @@ export class User {
   roleId: Number = 0;
   telephone: String = '';
   username: String = '';
+  Clear() {
+    this.email = '';
+    this.firstname = '';
+    this.lastname = '';
+    this.password = '';
+    this.position = '';
+    this.roleId = 0;
+    this.telephone = '';
+    this.username = '';
+  }
 }

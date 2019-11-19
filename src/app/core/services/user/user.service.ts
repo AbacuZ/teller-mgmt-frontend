@@ -46,4 +46,8 @@ export class UserService {
     this.user.telephone = data.telephone;
     this.user.username = data.username;
   }
+
+  clearUserData() {
+    this.user.Clear();
+  }
 }

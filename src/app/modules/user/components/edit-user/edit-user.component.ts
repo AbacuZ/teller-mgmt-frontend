@@ -1,15 +1,102 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService, RoleService } from '@app/core';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  editUserForm: FormGroup;
+  isNextForm: Boolean = false;
+  subscription: Subscription;
+  roles: any[];
+  idParams: number = +this.route.snapshot.paramMap.get('id');
+
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService,
+    private roleService: RoleService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    this.dropdownData();
+    this.initForm();
+    this.updateForm();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  dropdownData() {
+    this.subscription = this.roleService.findAll().subscribe(result => {
+      this.roles = result;
+    });
+  }
+
+  initForm() {
+    this.editUserForm = this.formBuilder.group({
+      username: [{ value: '', disabled: true }, Validators.required],
+      password: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      position: [''],
+      email: [''],
+      telephone: [''],
+      roleId: ['', Validators.required]
+    });
+  }
+
+  get f() {
+    return this.editUserForm.controls;
+  }
+
+  updateForm() {
+    this.subscription = this.userService.findById(this.idParams).subscribe(result => {
+      this.editUserForm.patchValue({
+        username: result.username,
+        password: result.password,
+        firstname: result.firstname,
+        lastname: result.lastname,
+        position: result.position,
+        email: result.email,
+        telephone: result.telephone,
+        roleId: result.roleId
+      });
+    });
+  }
+
+  cancel() {
+    this.router.navigate(['/user/search']);
+  }
+
+  saveForm(form: any) {
+    this.isNextForm = true;
+
+    if (form.invalid) {
+      return false;
+    }
+
+    this.userService.setUserData(this.editUserForm.getRawValue());
+    return true;
+  }
+
+  save() {
+    if (this.saveForm(this.editUserForm)) {
+      this.subscription = this.userService.editUser(this.idParams).subscribe(result => {
+        if (result) {
+          this.userService.clearUserData();
+          this.router.navigate(['/user/search']);
+        }
+      });
+    }
   }
 
 }
