@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
       { path: '', loadChildren: './modules/search/search.module#SearchModule' },
       { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
-      { path: 'teller-details', loadChildren: './modules/teller-details/teller-details#TellerDetailsModule' }
+      { path: 'teller', loadChildren: './modules/teller/teller#TellerModule' }
     ]
   },
   { path: 'login', component: LoginComponent, data: { title: 'ล็อคอิน' } },
