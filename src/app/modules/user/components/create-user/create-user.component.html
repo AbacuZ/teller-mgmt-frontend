@@ -1,3 +1,159 @@
-<p>
-  create-user works!
-</p>
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Create User
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/home']"><i class="fa fa-dashboard"></i> หน้าหลัก</a></li>
+        <li class="active"><a [routerLink]="['/user/search']">ผู้ใช้งาน</a></li>
+        <li class="active"><a [routerLink]="['/user/create']">สร้างผู้ใช้งาน</a></li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="box">
+        <div class="box-header">
+          <div class="row">
+            <div class="col-xs-12 text-bold">
+              <span>รายละเอียด</span>
+            </div>
+          </div>
+        </div>
+        <div class="box-body wrapper-doc">
+          <form novalidate [formGroup]="createUserForm">
+            <fieldset>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Username<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="username" 
+                    formControlName="username" 
+                    name="username" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.username.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.username.errors">
+                    <div *ngIf="f.username.errors.required">Please insert username</div>
+                  </div>
+                </div>
+                <label class="col-xs-1 col-form-label">Password <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    formControlName="password" 
+                    name="password" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.password.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.password.errors">
+                    <div *ngIf="f.password.errors.required">Please insert password</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Firstname<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="firstname" 
+                    formControlName="firstname" 
+                    name="firstname" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.firstname.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.firstname.errors">
+                    <div *ngIf="f.firstname.errors.required">Please insert firstname</div>
+                  </div>
+                </div>
+                <label class="col-xs-1 col-form-label">Lastname <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="lastname" 
+                    formControlName="lastname" 
+                    name="lastname" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.lastname.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.lastname.errors">
+                    <div *ngIf="f.lastname.errors.required">Please insert lastname</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Position</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="position" 
+                    formControlName="position" 
+                    name="position" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.position.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.position.errors">
+                    <div *ngIf="f.position.errors.required">Please insert position</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="email" 
+                    formControlName="email" 
+                    name="email" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.email.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.email.errors">
+                    <div *ngIf="f.email.errors.required">Please insert email</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Telephone</label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="telephone" 
+                    formControlName="telephone" 
+                    name="telephone" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.telephone.errors }"
+                  >
+                </div>
+                <label class="col-xs-1 col-form-label">Role <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select
+                    class="form-control" 
+                    formControlName="roleId" 
+                    name="roleId"
+                    [ngClass]="{ 'is-invalid' : isNextForm && f.roleId.errors  }" 
+                  >
+                    <option value="">เลือก</option>
+                    <option *ngFor="let role of roles" [value]="role.roleId">{{ role.roleName }}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.roleId.errors">
+                    <div *ngIf="f.roleId.errors.required">Please select role</div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="text-right">
+                <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="save()">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

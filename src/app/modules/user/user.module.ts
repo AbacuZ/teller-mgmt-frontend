@@ -6,11 +6,16 @@ import { UserRoutingModule } from './user-routing.module';
 import { ListUserComponent } from './components/list-user/list-user.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { UserService, RoleService } from '@app/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ListUserComponent,
@@ -18,7 +23,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     EditUserComponent
   ],
   providers: [
-    DataTablesModule
+    UserService,
+    RoleService
   ]
 })
 export class UserModule { }

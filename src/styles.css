@@ -2,6 +2,7 @@
 @import "assets/bootstrap/css/bootstrap.min.css";
 @import "assets/dist/css/style.min.css";
 @import 'assets/dist/css/font-awesome.css';
+@import 'assets/dist/css/datatable-implement.css';
 
 html, body {
   height: 100%;
@@ -10,4 +11,8 @@ html, body {
 .box-header-search {
   color:#f2f2f2;
   background-color: #e3007b;
+}
+
+.col-form-label {
+  font-weight: bold !important;
 }
