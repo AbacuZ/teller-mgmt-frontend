@@ -19,12 +19,15 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/datatables.net-dt/css/jquery.dataTables.css"
       ],
       "scripts": [
         "assets/plugins/jQuery/jQuery-2.2.0.min.js",
         "assets/bootstrap/js/bootstrap.min.js",
-        "assets/dist/js/app.min.js"
+        "assets/dist/js/app.min.js",
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/datatables.net/js/jquery.dataTables.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
