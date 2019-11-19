@@ -12,23 +12,15 @@ export class AuthService {
   constructor(private router: Router) { }
 
   setLogin() {
-    this.isLogin = true;
+    sessionStorage.setItem('token', 'gsbTeller');
   }
 
   getLogin() {
-    return this.isLogin;
-  }
-
-  setUserLoggedIn(userLoggedIn: boolean) {
-    this.userLoggedIn.next(userLoggedIn);
-  }
-
-  getUserLoggedIn(): Observable<boolean> {
-    return this.userLoggedIn.asObservable();
+    return sessionStorage.getItem('token') != null;
   }
 
   logout() {
-    this.isLogin = false;
+    sessionStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 

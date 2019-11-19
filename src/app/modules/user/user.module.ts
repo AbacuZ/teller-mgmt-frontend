@@ -6,7 +6,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { ListUserComponent } from './components/list-user/list-user.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { UserService, RoleService } from '@app/core';
+import { RoleService } from '@app/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -23,7 +23,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditUserComponent
   ],
   providers: [
-    UserService,
     RoleService
   ]
 })

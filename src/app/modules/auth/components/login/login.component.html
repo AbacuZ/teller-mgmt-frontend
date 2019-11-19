@@ -23,6 +23,7 @@
                           formControlName="user"
                           name="user" 
                           autofocus 
+                          [ngClass]="{ 'is-invalid': isNextForm && f.user.errors }"
                         >
                       </div>
                       <div class="form-group">
@@ -34,6 +35,7 @@
                             id="password"
                             formControlName="password" 
                             name="password" 
+                            [ngClass]="{ 'is-invalid': isNextForm && f.password.errors }"
                           >
                           <div class="input-group-btn">
                             <button type="button" class="btn btn-primary" (click)="showPassword()">

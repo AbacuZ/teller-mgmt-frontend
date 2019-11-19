@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
-import { AuthService, AuthGuard, DropdownService } from '@app/core';
+import { AuthService, AuthGuard, DropdownService, UserService } from '@app/core';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { AuthService, AuthGuard, DropdownService } from '@app/core';
   providers: [
     AuthGuard,
     AuthService,
-    DropdownService
+    DropdownService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

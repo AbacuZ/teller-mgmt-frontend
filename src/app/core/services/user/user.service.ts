@@ -24,6 +24,15 @@ export class UserService {
     return this.http.get(this.USER_API + '/' + id);
   }
 
+  findByUsername(username: any): Observable<any> {
+    return this.http.get(this.USER_API + '/' + 'find-by-username' + '/' + username);
+  }
+
+  userLogin(username: any, password: any): Observable<any> {
+    const data = { username: username, password: password };
+    return this.http.post(this.USER_API + '/login', data);
+  }
+
   createUser(): Observable<any> {
     return this.http.post(this.USER_API, this.user);
   }
