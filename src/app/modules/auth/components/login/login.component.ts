@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { AuthService, UserService } from '@app/core';
+import { AuthService, UserService, DropdownService } from '@app/core';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private dropdownService: DropdownService) { }
 
   ngOnInit() {
     this.initForm();
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(result => {
           if (result.valid) {
             this.subscription = this.userService.findByUsername(this.loginForm.value.user).subscribe(
-              res => {
+              async res => {
                 this.authService.setLogin(this.loginForm.value.user);
                 this.userService.setCurrentUser(res);
                 this.router.navigate(['/search']);

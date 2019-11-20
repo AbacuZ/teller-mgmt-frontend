@@ -20,7 +20,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: EditTellerComponent,
     data: {
       title: 'แก้ไข Teller Details'

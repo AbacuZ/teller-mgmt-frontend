@@ -26,9 +26,7 @@ export class ListUserComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    setTimeout((): void => {
-      this.dtTrigger.next();
-    }, 500);
+    this.dtTrigger.next();
   }
 
   ngOnDestroy() {
