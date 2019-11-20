@@ -21,6 +21,7 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
   recordsTotal: any = null;
   brand: any[];
   versionTeller: any[];
+  dataIndex: any;
 
   constructor(private tellerService: TellerService,
     private dropdownService: DropdownService) { }
@@ -67,6 +68,7 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
       const pageSize = dataTablesParameters.length;
       this.subscription = this.tellerService.findAllPaging(pageNo, pageSize).subscribe(result => {
         if (result.tellerResult) {
+          this.dataIndex = dataTablesParameters.start;
           this.recordsTotal = result.recordsTotal;
           this.tellerService.setDataTables(result.tellerResult, this.brand, this.versionTeller);
           this.rowDatas = result.tellerResult;

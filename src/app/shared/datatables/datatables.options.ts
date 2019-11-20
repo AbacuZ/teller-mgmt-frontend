@@ -2,6 +2,7 @@ export const dtOptions = {
   info: false,
   pagingType: 'full_numbers',
   pageLength: 10,
+  searching: false,
   scrollX: false,
   language: {
     info: 'แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว',

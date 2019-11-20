@@ -39,7 +39,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let rowData of rowDatas; let i = index">
-                      <td> {{ i + 1 }} </td>
+                      <td> {{ dataIndex + i + 1 }} </td>
                       <td><a [routerLink]="['/teller/edit', rowData.tellerId]">{{ rowData.tellerNo }}</a></td>
                       <td>{{ rowData.tellerAddress }}</td>
                       <td>{{ rowData.brand }}</td>
