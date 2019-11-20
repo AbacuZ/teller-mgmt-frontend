@@ -11,8 +11,8 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  setLogin() {
-    sessionStorage.setItem('token', 'gsbTeller');
+  setLogin(username: any) {
+    sessionStorage.setItem('token', username);
   }
 
   getLogin() {

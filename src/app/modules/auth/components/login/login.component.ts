@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           if (result.valid) {
             this.subscription = this.userService.findByUsername(this.loginForm.value.user).subscribe(
               res => {
-                this.authService.setLogin();
+                this.authService.setLogin(this.loginForm.value.user);
                 this.userService.setCurrentUser(res);
                 this.router.navigate(['/search']);
               }
