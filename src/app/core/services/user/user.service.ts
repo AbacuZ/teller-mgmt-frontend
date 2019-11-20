@@ -3,6 +3,7 @@ import { environment } from 'environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user.model';
+import { CurrentUser } from './current-user.model';
 
 @Injectable()
 export class UserService {
@@ -15,6 +16,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   private user: User = new User();
+  private currentUser: CurrentUser = new CurrentUser();
 
   findAll(): Observable<any> {
     return this.http.get(this.USER_API);
@@ -59,4 +61,20 @@ export class UserService {
   clearUserData() {
     this.user.Clear();
   }
+
+  setCurrentUser(data: any) {
+    this.currentUser.email = data.email;
+    this.currentUser.firstname = data.firstname;
+    this.currentUser.lastname = data.lastname;
+    this.currentUser.password = data.password;
+    this.currentUser.position = data.position;
+    this.currentUser.roleId = data.roleId;
+    this.currentUser.telephone = data.telephone;
+    this.currentUser.username = data.username;
+  }
+
+  getUsername() {
+    return this.currentUser.username;
+  }
+
 }
