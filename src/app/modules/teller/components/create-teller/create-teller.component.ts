@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { DropdownService } from '@app/core';
@@ -9,7 +9,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
   templateUrl: './create-teller.component.html',
   styleUrls: ['./create-teller.component.css']
 })
-export class CreateTellerComponent implements OnInit {
+export class CreateTellerComponent implements OnInit, OnDestroy {
 
   createTellerForm: FormGroup;
   subscription: Subscription;
@@ -28,6 +28,12 @@ export class CreateTellerComponent implements OnInit {
   ngOnInit() {
     this.getDropdownData();
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription !== null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getDropdownData() {
@@ -53,6 +59,13 @@ export class CreateTellerComponent implements OnInit {
   initForm() {
     this.createTellerForm = this.formBuilder.group({
       tellerNo: ['', Validators.required],
+      tellerAddress: [''],
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
+      serial: [''],
+      telTellerAddress: [''],
+      branch: [''],
+      gprsCompany: [''],
       ipAddress: ['', Validators.required],
       ipGateway: ['', Validators.required],
       servicePort: ['', Validators.required],
@@ -70,6 +83,27 @@ export class CreateTellerComponent implements OnInit {
 
   get f() {
     return this.createTellerForm.controls;
+  }
+
+  clearForm() {
+    this.isNextForm = false;
+    this.createTellerForm.reset();
+    this.initForm();
+  }
+
+  saveForm(form: any) {
+    this.isNextForm = true;
+
+    if (form.invalid) {
+      return false;
+    }
+
+    return true;
+  }
+
+  save() {
+    if (this.saveForm(this.createTellerForm)) {
+    }
   }
 
 }

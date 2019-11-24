@@ -35,6 +35,98 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Address</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="tellerAddress" 
+                    formControlName="tellerAddress" 
+                    name="tellerAddress" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.tellerAddress.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.tellerAddress.errors">
+                    <div *ngIf="f.tellerAddress.errors.required">Please insert tellerAddress</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Latitude<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="latitude" 
+                    formControlName="latitude" 
+                    name="latitude" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.latitude.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.latitude.errors">
+                    <div *ngIf="f.latitude.errors.required">Please insert latitude</div>
+                  </div>
+                </div>
+                <label class="col-xs-2 col-form-label">Longitude<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="longitude" 
+                    formControlName="longitude" 
+                    name="longitude" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.longitude.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.longitude.errors">
+                    <div *ngIf="f.longitude.errors.required">Please insert longitude</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Serial</label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="serial" 
+                    formControlName="serial" 
+                    name="serial" 
+                  >
+                </div>
+                <label class="col-xs-2 col-form-label">Contact No</label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="telTellerAddress" 
+                    formControlName="telTellerAddress" 
+                    name="telTellerAddress" 
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Branch</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="branch" 
+                    formControlName="branch" 
+                    name="branch" 
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">GPS Company</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="gprsCompany" 
+                    formControlName="gprsCompany" 
+                    name="gprsCompany" 
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
                 <label class="col-xs-2 col-form-label">Zone<span class="text-danger">*</span></label>
                 <div class="col-sm-4">
                   <select 
@@ -78,6 +170,9 @@
                       {{ district.districtNameThai }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.district.errors">
+                    <div *ngIf="f.district.errors.required">Please insert district</div>
+                  </div>
                 </div>
               </div>
               <div class="content-border">
@@ -94,7 +189,7 @@
                       [ngClass]="{ 'is-invalid': isNextForm && f.ipAddress.errors }"
                     >
                     <div class="invalid-feedback" *ngIf="isNextForm && f.ipAddress.errors">
-                      <div *ngIf="f.ipAddress.errors.required">Please insert ipAddress</div>
+                      <div *ngIf="f.ipAddress.errors.required">Please insert ip address</div>
                     </div>
                   </div>
                   <label class="col-xs-2 col-form-label">IP Gateway<span class="text-danger">*</span></label>
@@ -108,7 +203,7 @@
                       [ngClass]="{ 'is-invalid': isNextForm && f.ipGateway.errors }"
                     >
                     <div class="invalid-feedback" *ngIf="isNextForm && f.ipGateway.errors">
-                      <div *ngIf="f.ipGateway.errors.required">Please insert ipGateway</div>
+                      <div *ngIf="f.ipGateway.errors.required">Please insert ip gateway</div>
                     </div>
                   </div>
                 </div>
@@ -124,7 +219,7 @@
                       [ngClass]="{ 'is-invalid': isNextForm && f.servicePort.errors }"
                     >
                     <div class="invalid-feedback" *ngIf="isNextForm && f.servicePort.errors">
-                      <div *ngIf="f.servicePort.errors.required">Please insert servicePort</div>
+                      <div *ngIf="f.servicePort.errors.required">Please insert service port</div>
                     </div>
                   </div>
                   <label class="col-xs-2 col-form-label">Local Port<span class="text-danger">*</span></label>
@@ -138,7 +233,7 @@
                       [ngClass]="{ 'is-invalid': isNextForm && f.localPort.errors }"
                     >
                     <div class="invalid-feedback" *ngIf="isNextForm && f.localPort.errors">
-                      <div *ngIf="f.localPort.errors.required">Please insert localPort</div>
+                      <div *ngIf="f.localPort.errors.required">Please insert local port</div>
                     </div>
                   </div>
                 </div>
@@ -173,6 +268,9 @@
                       {{ version.versionTellerName }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.versionTellerId.errors">
+                    <div *ngIf="f.versionTellerId.errors.required">Please insert version</div>
+                  </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Brand<span class="text-danger">*</span></label>
                 <div class="col-sm-4">
@@ -187,6 +285,9 @@
                       {{ brand.brandTellerName }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.brandTellerId.errors">
+                    <div *ngIf="f.brandTellerId.errors.required">Please insert brand</div>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -202,6 +303,9 @@
                       {{ typeTeller.typeTellerName }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.typeTellerId.errors">
+                    <div *ngIf="f.typeTellerId.errors.required">Please insert brand</div>
+                  </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Address Type<span class="text-danger">*</span></label>
                 <div class="col-sm-4">
@@ -215,6 +319,23 @@
                       {{ typeAddress.typeAddressName }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.typeAddressId.errors">
+                    <div *ngIf="f.typeAddressId.errors.required">Please insert address type</div>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr-color-dg">
+              <div class="container-fluid">
+                <div class="row btn-footer">
+                  <div class="col-xs-8">
+                    <button type="button" class="btn btn-primary" routerLink="/teller/search">Cancel</button>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                    <button type="button" class="btn btn-default" (click)="clearForm()">Clear</button>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                    <button type="button" class="btn btn-block btn-primary" (click)="save()">Submit</button>
+                  </div>
                 </div>
               </div>
             </fieldset>
