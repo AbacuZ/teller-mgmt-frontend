@@ -131,29 +131,35 @@
                 <div class="col-sm-4">
                   <select 
                     class="form-control" 
-                    formControlName="zone" 
-                    name="zone" 
-                    [ngClass]="{ 'is-invalid': isNextForm && f.zone.errors }"
+                    formControlName="zoneId" 
+                    name="zoneId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.zoneId.errors }"
                   >
                     <option value="">Select Zone</option>
                     <option *ngFor="let zone of zones" [value]="zone.zoneId">
                       {{ zone.zoneName }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.zoneId.errors">
+                    <div *ngIf="f.zoneId.errors.required">Please insert zone</div>
+                  </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Province<span class="text-danger">*</span></label>
                 <div class="col-sm-4">
                   <select 
                     class="form-control" 
-                    formControlName="province" 
-                    name="province" 
-                    [ngClass]="{ 'is-invalid': isNextForm && f.province.errors }"
+                    formControlName="provinceId" 
+                    name="provinceId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.provinceId.errors }"
                   >
                     <option value="">Select Province</option>
                     <option *ngFor="let province of provinces" [value]="province.provinceId">
                       {{ province.provinceNameThai }}
                     </option>
                   </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.provinceId.errors">
+                    <div *ngIf="f.provinceId.errors.required">Please insert province</div>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -161,17 +167,17 @@
                 <div class="col-sm-4">
                   <select 
                     class="form-control" 
-                    formControlName="district" 
-                    name="district" 
-                    [ngClass]="{ 'is-invalid': isNextForm && f.district.errors }"
+                    formControlName="districtId" 
+                    name="districtId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.districtId.errors }"
                   >
                     <option value="">Select District</option>
                     <option *ngFor="let district of districts" [value]="district.districtId">
                       {{ district.districtNameThai }}
                     </option>
                   </select>
-                  <div class="invalid-feedback" *ngIf="isNextForm && f.district.errors">
-                    <div *ngIf="f.district.errors.required">Please insert district</div>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.districtId.errors">
+                    <div *ngIf="f.districtId.errors.required">Please insert district</div>
                   </div>
                 </div>
               </div>
