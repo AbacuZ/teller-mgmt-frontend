@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Teller } from './teller.model';
 
 @Injectable()
 export class TellerService {
@@ -12,6 +13,7 @@ export class TellerService {
 
   constructor(private http: HttpClient) { }
 
+  private teller: Teller = new Teller();
   public result: any[];
 
   findAll(): Observable<any> {
@@ -24,6 +26,10 @@ export class TellerService {
 
   findById(id: any): Observable<any> {
     return this.http.get(this.TELLER_API + '/' + id);
+  }
+
+  createTeller(): Observable<any> {
+    return this.http.post(this.TELLER_API, this.teller);
   }
 
   setDataTables(data: any[], brand: any[], versionTeller: any[]) {
