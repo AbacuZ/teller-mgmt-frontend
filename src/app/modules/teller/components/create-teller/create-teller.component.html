@@ -1,3 +1,226 @@
-<p>
-  create-teller works!
-</p>
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Create Teller Details
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/home']"><i class="fa fa-dashboard"></i> หน้าหลัก</a></li>
+        <li class="active"><a [routerLink]="['/teller/search']">Teller Management</a></li>
+        <li class="active"><a [routerLink]="['/teller/create']">สร้าง Teller Details</a></li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="box">
+        <div class="box-body wrapper-doc">
+          <form novalidate [formGroup]="createTellerForm">
+            <fieldset>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">TellerNo<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <input
+                    type="text" 
+                    class="form-control" 
+                    id="tellerNo" 
+                    formControlName="tellerNo" 
+                    name="tellerNo" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.tellerNo.errors }"
+                  >
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.tellerNo.errors">
+                    <div *ngIf="f.tellerNo.errors.required">Please insert tellerNo</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Zone<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="zone" 
+                    name="zone" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.zone.errors }"
+                  >
+                    <option value="">Select Zone</option>
+                    <option *ngFor="let zone of zones" [value]="zone.zoneId">
+                      {{ zone.zoneName }}
+                    </option>
+                  </select>
+                </div>
+                <label class="col-xs-2 col-form-label">Province<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="province" 
+                    name="province" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.province.errors }"
+                  >
+                    <option value="">Select Province</option>
+                    <option *ngFor="let province of provinces" [value]="province.provinceId">
+                      {{ province.provinceNameThai }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">District<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="district" 
+                    name="district" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.district.errors }"
+                  >
+                    <option value="">Select District</option>
+                    <option *ngFor="let district of districts" [value]="district.districtId">
+                      {{ district.districtNameThai }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="content-border">
+                <div class="config">Config</div>
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label">IP Address<span class="text-danger">*</span></label>
+                  <div class="col-sm-4">
+                    <input
+                      type="text" 
+                      class="form-control" 
+                      id="ipAddress" 
+                      formControlName="ipAddress" 
+                      name="ipAddress" 
+                      [ngClass]="{ 'is-invalid': isNextForm && f.ipAddress.errors }"
+                    >
+                    <div class="invalid-feedback" *ngIf="isNextForm && f.ipAddress.errors">
+                      <div *ngIf="f.ipAddress.errors.required">Please insert ipAddress</div>
+                    </div>
+                  </div>
+                  <label class="col-xs-2 col-form-label">IP Gateway<span class="text-danger">*</span></label>
+                  <div class="col-sm-4">
+                    <input
+                      type="text" 
+                      class="form-control" 
+                      id="ipGateway" 
+                      formControlName="ipGateway" 
+                      name="ipGateway" 
+                      [ngClass]="{ 'is-invalid': isNextForm && f.ipGateway.errors }"
+                    >
+                    <div class="invalid-feedback" *ngIf="isNextForm && f.ipGateway.errors">
+                      <div *ngIf="f.ipGateway.errors.required">Please insert ipGateway</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label">Service Port<span class="text-danger">*</span></label>
+                  <div class="col-sm-4">
+                    <input
+                      type="text" 
+                      class="form-control" 
+                      id="servicePort" 
+                      formControlName="servicePort" 
+                      name="servicePort" 
+                      [ngClass]="{ 'is-invalid': isNextForm && f.servicePort.errors }"
+                    >
+                    <div class="invalid-feedback" *ngIf="isNextForm && f.servicePort.errors">
+                      <div *ngIf="f.servicePort.errors.required">Please insert servicePort</div>
+                    </div>
+                  </div>
+                  <label class="col-xs-2 col-form-label">Local Port<span class="text-danger">*</span></label>
+                  <div class="col-sm-4">
+                    <input
+                      type="text" 
+                      class="form-control" 
+                      id="localPort" 
+                      formControlName="localPort" 
+                      name="localPort" 
+                      [ngClass]="{ 'is-invalid': isNextForm && f.localPort.errors }"
+                    >
+                    <div class="invalid-feedback" *ngIf="isNextForm && f.localPort.errors">
+                      <div *ngIf="f.localPort.errors.required">Please insert localPort</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label">Index Key<span class="text-danger">*</span></label>
+                  <div class="col-sm-4">
+                    <input
+                      type="text" 
+                      class="form-control" 
+                      id="indexMasterKey" 
+                      formControlName="indexMasterKey" 
+                      name="indexMasterKey" 
+                      [ngClass]="{ 'is-invalid': isNextForm && f.indexMasterKey.errors }"
+                    >
+                    <div class="invalid-feedback" *ngIf="isNextForm && f.indexMasterKey.errors">
+                      <div *ngIf="f.indexMasterKey.errors.required">Please insert index key</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Version<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="versionTellerId" 
+                    name="versionTellerId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.versionTellerId.errors }"
+                  >
+                    <option value="">Select Version</option>
+                    <option *ngFor="let version of versions" [value]="version.versionTellerId">
+                      {{ version.versionTellerName }}
+                    </option>
+                  </select>
+                </div>
+                <label class="col-xs-2 col-form-label">Brand<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="brandTellerId" 
+                    name="brandTellerId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.brandTellerId.errors }"
+                  >
+                    <option value="">Select Brand</option>
+                    <option *ngFor="let brand of brands" [value]="brand.brandId">
+                      {{ brand.brandTellerName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Type Teller<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="typeTellerId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.typeTellerId.errors }"
+                  >
+                    <option value="">Select Type Teller</option>
+                    <option *ngFor="let typeTeller of typeTellers" [value]="typeTeller.typeTellerId">
+                      {{ typeTeller.typeTellerName }}
+                    </option>
+                  </select>
+                </div>
+                <label class="col-xs-2 col-form-label">Address Type<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="typeAddressId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.typeAddressId.errors }"
+                  >
+                    <option value="">Select Address Type</option>
+                    <option *ngFor="let typeAddress of typeAddresses" [value]="typeAddress.typeAddressId">
+                      {{ typeAddress.typeAddressName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

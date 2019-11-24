@@ -1,0 +1,16 @@
+.content-border {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 2px solid #d2d6de;
+  border-radius: 5px;
+}
+
+.config {
+  width: 50px;
+  margin-top:-15px;
+  margin-left: 5px;
+  background:#fff;
+  font-weight: bold;
+  font-size: 14px;
+}

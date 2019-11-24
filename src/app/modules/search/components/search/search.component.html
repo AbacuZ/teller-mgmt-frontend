@@ -31,8 +31,8 @@
                   <input 
                     class="form-control" 
                     type="text" 
-                    formControlName="text" 
-                    name="text"
+                    formControlName="tellerAddress" 
+                    name="tellerAddress"
                   >
                 </div>
               </div>
@@ -43,6 +43,9 @@
                     formControlName="zone" 
                   >
                     <option value="">Zone</option>
+                    <option *ngFor="let zone of zones" [value]="zone.zoneId">
+                      {{ zone.zoneName }}
+                    </option>
                   </select>
                 </div>
                 <div class="col-sm-4">
@@ -51,6 +54,9 @@
                     formControlName="province" 
                   >
                     <option value="">Province</option>
+                    <option *ngFor="let province of provinces" [value]="province.provinceId">
+                      {{ province.provinceNameThai }}
+                    </option>
                   </select>
                 </div>
                 <div class="col-sm-4">
@@ -59,6 +65,9 @@
                     formControlName="district" 
                   >
                     <option value="">District</option>
+                    <option *ngFor="let district of districts" [value]="district.districtId">
+                      {{ district.districtNameThai }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -69,6 +78,9 @@
                     formControlName="brandTeller" 
                   >
                     <option value="">Brand Teller</option>
+                    <option *ngFor="let brand of brands" [value]="brand.brandId">
+                      {{ brand.brandTellerName }}
+                    </option>
                   </select>
                 </div>
                 <div class="col-sm-4">
@@ -77,6 +89,9 @@
                     formControlName="versionTeller" 
                   >
                     <option value="">Version Teller</option>
+                    <option *ngFor="let version of versions" [value]="version.versionTellerId">
+                      {{ version.versionTellerName }}
+                    </option>
                   </select>
                 </div>
                 <div class="col-sm-4">
@@ -85,6 +100,9 @@
                     formControlName="typeTeller" 
                   >
                     <option value="">Type Teller</option>
+                    <option *ngFor="let typeTeller of typeTellers" [value]="typeTeller.typeTellerId">
+                      {{ typeTeller.typeTellerName }}
+                    </option>
                   </select>
                 </div>
               </div>

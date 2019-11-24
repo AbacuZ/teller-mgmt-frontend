@@ -9,8 +9,11 @@ export class DropdownService {
   private API = environment.endpoint;
   private BRAND_API = this.API + '/api/v1/tellermgmt/brandteller';
   private VERSION_API = this.API + '/api/v1/tellermgmt/version';
-  private PROVINCE_API = this.API + '';
-  private DISTRICT = this.API + '';
+  private PROVINCE_API = this.API + '/api/v1/tellermgmt/province';
+  private DISTRICT = this.API + '/api/v1/tellermgmt/district';
+  private ZONE_API = this.API + '/api/v1/tellermgmt/zone';
+  private TYPE_TELLER_API = this.API + '/api/v1/tellermgmt/typeteller';
+  private TYPE_ADDRESS_API = this.API + '/api/v1/tellermgmt/typeaddress';
 
   constructor(private http: HttpClient) { }
 
@@ -20,5 +23,25 @@ export class DropdownService {
 
   finAllVersion(): Observable<any> {
     return this.http.get(this.VERSION_API);
+  }
+
+  findAllProvince(): Observable<any> {
+    return this.http.get(this.PROVINCE_API);
+  }
+
+  findAllDistrict(): Observable<any> {
+    return this.http.get(this.DISTRICT);
+  }
+
+  findAllZone(): Observable<any> {
+    return this.http.get(this.ZONE_API);
+  }
+
+  findAllTypeTeller(): Observable<any> {
+    return this.http.get(this.TYPE_TELLER_API);
+  }
+
+  findAllTypeAddress(): Observable<any> {
+    return this.http.get(this.TYPE_ADDRESS_API);
   }
 }
