@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import { DropdownService } from '@app/core';
+import { DropdownService, TellerService } from '@app/core';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-teller',
@@ -23,7 +24,9 @@ export class CreateTellerComponent implements OnInit, OnDestroy {
   typeAddresses: any[];
 
   constructor(private formBuilder: FormBuilder,
-    private dropdownService: DropdownService) { }
+    private dropdownService: DropdownService,
+    private tellerService: TellerService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getDropdownData();
@@ -98,11 +101,19 @@ export class CreateTellerComponent implements OnInit, OnDestroy {
       return false;
     }
 
+    this.tellerService.setTeller(this.createTellerForm.value);
+    this.tellerService.setTellerDetails(this.createTellerForm.value);
     return true;
   }
 
   save() {
     if (this.saveForm(this.createTellerForm)) {
+      this.subscription = this.tellerService.createTeller().subscribe(result => {
+        if (result) {
+          this.tellerService.clear();
+          this.router.navigate(['/teller/search']);
+        }
+      });
     }
   }
 

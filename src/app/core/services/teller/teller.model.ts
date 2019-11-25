@@ -8,11 +8,6 @@ export class Teller {
   telTellerAddress: String = '';
   branch: String = '';
   gprsCompany: String = '';
-  ipAddress: String = '';
-  ipGateway: String = '';
-  servicePort: String = '';
-  localPort: String = '';
-  indexMasterKey: String = '';
   zoneId: String = '';
   provinceId: String = '';
   districtId: String = '';
@@ -30,11 +25,6 @@ export class Teller {
     this.telTellerAddress = '';
     this.branch = '';
     this.gprsCompany = '';
-    this.ipAddress = '';
-    this.ipGateway = '';
-    this.servicePort = '';
-    this.localPort = '';
-    this.indexMasterKey = '';
     this.zoneId = '';
     this.provinceId = '';
     this.districtId = '';
@@ -42,5 +32,22 @@ export class Teller {
     this.brandTellerId = '';
     this.typeTellerId = '';
     this.typeAddressId = '';
+  }
+}
+
+export class TellerDetails {
+  tellerDetailsId: Number = 0;
+  ipAddress: String = '';
+  ipGateway: String = '';
+  servicePort: String = '';
+  localPort: String = '';
+  indexMasterKey: String = '';
+  Clear() {
+    this.tellerDetailsId = 0;
+    this.ipAddress = '';
+    this.ipGateway = '';
+    this.servicePort = '';
+    this.localPort = '';
+    this.indexMasterKey = '';
   }
 }
