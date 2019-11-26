@@ -10,6 +10,7 @@ export class TellerService {
   private API = environment.endpoint;
   private TELLER_API = this.API + '/api/v1/tellermgmt/teller';
   private SEARCH_TELLER_API = this.API + '/api/v1/tellermgmt/teller/search';
+  private TELLER_DETAILS_API = this.API + '/api/v1/tellermgmt/tellerdetails';
 
   constructor(private http: HttpClient) { }
 
@@ -29,9 +30,43 @@ export class TellerService {
     return this.http.get(this.TELLER_API + '/' + id);
   }
 
+  findTellerDetailsById(id: any): Observable<any> {
+    return this.http.get(this.TELLER_DETAILS_API + '/' + id);
+  }
+
   createTeller(): Observable<any> {
     const data = { teller: this.getTeller(), tellerDetails: this.getTellerDetails() };
     return this.http.post(this.TELLER_API, data);
+  }
+
+  updateTeller(): Observable<any> {
+    const data = { teller: this.getTeller(), tellerDetails: this.getTellerDetails() };
+    return this.http.put(this.TELLER_API, data);
+  }
+
+  setTellerAndTellerDetails(result: any, res: any) {
+    this.teller.tellerId = result.tellerId;
+    this.teller.tellerNo = result.tellerNo;
+    this.teller.tellerAddress = result.tellerAddress;
+    this.teller.latitude = result.latitude;
+    this.teller.longitude = result.longitude;
+    this.teller.serial = result.serial;
+    this.teller.telTellerAddress = result.telTellerAddress;
+    this.teller.branch = result.branch;
+    this.teller.gprsCompany = result.gprsCompany;
+    this.teller.zoneId = result.zoneId;
+    this.teller.provinceId = result.provinceId;
+    this.teller.districtId = result.districtId;
+    this.teller.versionTellerId = result.versionTellerId;
+    this.teller.brandTellerId = result.brandTellerId;
+    this.teller.typeTellerId = result.typeTellerId;
+    this.teller.typeAddressId = result.typeAddressId;
+    this.tellerDetails.tellerDetailsId = res.tellerDetailsId;
+    this.tellerDetails.indexMasterKey = res.indexMasterKey;
+    this.tellerDetails.ipAddress = res.ipAddress;
+    this.tellerDetails.ipGateway = res.ipGateway;
+    this.tellerDetails.localPort = res.localPort;
+    this.tellerDetails.servicePort = res.servicePort;
   }
 
   setTeller(data: any) {
