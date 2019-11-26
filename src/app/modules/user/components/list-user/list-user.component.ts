@@ -17,6 +17,7 @@ export class ListUserComponent implements OnInit, AfterViewInit, OnDestroy {
   dtTrigger: Subject<any> = new Subject();
   subscription: Subscription;
   rowDatas: any[] = [];
+  userId: any;
 
   constructor(private userService: UserService) { }
 
@@ -39,6 +40,15 @@ export class ListUserComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+
   initDtOptions() {
     this.dtOptions = dtOptions;
   }
@@ -46,6 +56,18 @@ export class ListUserComponent implements OnInit, AfterViewInit, OnDestroy {
   initSearch() {
     this.subscription = this.userService.findAll().subscribe(result => {
       this.rowDatas = result;
+    });
+  }
+
+  setModal(id: any) {
+    this.userId = id;
+  }
+
+  deleteRow() {
+    this.subscription = this.userService.deleteUser(this.userId).subscribe(async result => {
+      $('.psn-close').click();
+      this.initSearch();
+      this.rerender();
     });
   }
 

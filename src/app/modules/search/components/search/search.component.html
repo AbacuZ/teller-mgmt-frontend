@@ -75,11 +75,11 @@
                 <div class="col-sm-4">
                   <select 
                     class="form-control" 
-                    formControlName="brandTeller" 
+                    formControlName="addressType" 
                   >
-                    <option value="">Brand Teller</option>
-                    <option *ngFor="let brand of brands" [value]="brand.brandId">
-                      {{ brand.brandTellerName }}
+                    <option value="">Address Type</option>
+                    <option *ngFor="let addressType of addressTypes" [value]="addressType.typeAddressId">
+                      {{ addressType.typeAddressName }}
                     </option>
                   </select>
                 </div>
@@ -91,17 +91,6 @@
                     <option value="">Version Teller</option>
                     <option *ngFor="let version of versions" [value]="version.versionTellerId">
                       {{ version.versionTellerName }}
-                    </option>
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <select 
-                    class="form-control" 
-                    formControlName="typeTeller" 
-                  >
-                    <option value="">Type Teller</option>
-                    <option *ngFor="let typeTeller of typeTellers" [value]="typeTeller.typeTellerId">
-                      {{ typeTeller.typeTellerName }}
                     </option>
                   </select>
                 </div>

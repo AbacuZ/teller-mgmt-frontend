@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   provinces: any[];
   typeTellers: any[];
   zones: any[];
+  addressTypes: any[];
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService) { }
@@ -37,18 +38,16 @@ export class SearchComponent implements OnInit, OnDestroy {
   getDropdownData() {
     this.subscription = forkJoin(
       this.dropdownService.finAllVersion(),
-      this.dropdownService.findAllBrand(),
+      this.dropdownService.findAllTypeAddress(),
       this.dropdownService.findAllDistrict(),
       this.dropdownService.findAllProvince(),
-      this.dropdownService.findAllTypeTeller(),
       this.dropdownService.findAllZone()
     ).subscribe(result => {
       this.versions = result[0];
-      this.brands = result[1];
+      this.addressTypes = result[1];
       this.districts = result[2];
       this.provinces = result[3];
-      this.typeTellers = result[4];
-      this.zones = result[5];
+      this.zones = result[4];
     });
   }
 
@@ -58,9 +57,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       zone: [''],
       province: [''],
       district: [''],
-      brandTeller: [''],
-      versionTeller: [''],
-      typeTeller: ['']
+      addressType: [''],
+      versionTeller: ['']
     });
   }
 

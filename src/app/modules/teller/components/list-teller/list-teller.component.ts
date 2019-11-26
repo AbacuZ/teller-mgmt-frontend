@@ -22,6 +22,7 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
   brand: any[];
   versionTeller: any[];
   dataIndex: any;
+  tellerId: any;
 
   constructor(private tellerService: TellerService,
     private dropdownService: DropdownService) { }
@@ -44,6 +45,15 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.dtTrigger != null) {
       this.dtTrigger.unsubscribe();
     }
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
   getDropdownData() {
@@ -83,8 +93,14 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setModal(id: any) {
-    this.subscription = this.tellerService.deleteTeller(id).subscribe(result => {
+    this.tellerId = id;
+  }
+
+  deleteRow() {
+    this.subscription = this.tellerService.deleteTeller(this.tellerId).subscribe(async result => {
+      $('.psn-close').click();
       this.initSearch();
+      this.rerender();
     });
   }
 

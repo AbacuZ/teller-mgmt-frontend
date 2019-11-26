@@ -44,7 +44,7 @@ export class UserService {
   }
 
   deleteUser(id: any): Observable<any> {
-    return this.http.delete(this.DELETE_USER_API + '/' + id);
+    return this.http.delete(this.USER_API + '/' + id);
   }
 
   setUserData(data: any) {
