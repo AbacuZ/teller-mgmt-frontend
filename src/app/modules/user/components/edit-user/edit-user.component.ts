@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService, RoleService } from '@app/core';
+import { UserService, RoleService, ModalService } from '@app/core';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -21,7 +21,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private roleService: RoleService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private modalService: ModalService) { }
 
   ngOnInit() {
     this.dropdownData();
@@ -93,7 +94,11 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.subscription = this.userService.editUser(this.idParams).subscribe(result => {
         if (result) {
           this.userService.clearUserData();
-          this.router.navigate(['/user/search']);
+          this.modalService.setNormalStyle();
+          this.modalService.setHeader('User');
+          this.modalService.setContent('Edit User Success');
+          this.modalService.setRoute('/user/search');
+          this.modalService.open();
         }
       });
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DropdownService, TellerService } from '@app/core';
+import { DropdownService, TellerService, ModalService } from '@app/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { forkJoin } from 'rxjs/observable/forkJoin';
@@ -27,7 +27,7 @@ export class EditTellerComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
     private tellerService: TellerService,
-    private router: Router,
+    private modalService: ModalService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -161,7 +161,11 @@ export class EditTellerComponent implements OnInit, OnDestroy {
       this.subscription = this.tellerService.updateTeller().subscribe(result => {
         if (result) {
           this.tellerService.clear();
-          this.router.navigate(['/teller/search']);
+          this.modalService.setNormalStyle();
+          this.modalService.setHeader('Teller');
+          this.modalService.setContent('Update Teller Success');
+          this.modalService.setRoute('/teller/search');
+          this.modalService.open();
         }
       });
     }

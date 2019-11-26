@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { UserService } from '@app/core/services/user/user.service';
-import { RoleService } from '@app/core';
+import { RoleService, ModalService } from '@app/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +20,8 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private roleService: RoleService,
-    private router: Router) { }
+    private router: Router,
+    private modalService: ModalService) { }
 
   ngOnInit() {
     this.dropdownData();
@@ -76,7 +77,11 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       this.subscription = this.userService.createUser().subscribe(result => {
         if (result) {
           this.userService.clearUserData();
-          this.router.navigate(['/user/search']);
+          this.modalService.setNormalStyle();
+          this.modalService.setHeader('User');
+          this.modalService.setContent('Create User Success');
+          this.modalService.setRoute('/user/search');
+          this.modalService.open();
         }
       });
     }

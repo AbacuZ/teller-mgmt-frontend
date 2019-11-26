@@ -8,14 +8,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
-import { AuthService, AuthGuard, DropdownService, UserService } from '@app/core';
+import { AuthService, AuthGuard, DropdownService, UserService, ModalService } from '@app/core';
+import { ModalComponent } from './layouts/modal/modal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { AuthService, AuthGuard, DropdownService, UserService } from '@app/core'
     AuthGuard,
     AuthService,
     DropdownService,
-    UserService
+    UserService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })
