@@ -5,6 +5,7 @@ export class CurrentUser {
   password: String = '';
   position: String = '';
   roleId: Number = 0;
+  roleName: String = '';
   telephone: String = '';
   username: String = '';
 }

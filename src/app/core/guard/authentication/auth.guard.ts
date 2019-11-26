@@ -30,8 +30,10 @@ export class AuthGuard implements CanActivate {
   private getUserDataAndSessionTimeout(): Observable<boolean> | Promise<boolean> | boolean {
     const subject = new Subject<any>();
     this.userService.findByUsername(sessionStorage.getItem('token')).subscribe(async result => {
-      this.userService.setCurrentUser(result);
-      subject.next(true);
+      this.userService.findRoleById(result.roleId).subscribe(async item => {
+        this.userService.setCurrentUser(result, item);
+        subject.next(true);
+      });
     });
     return subject.asObservable();
   }

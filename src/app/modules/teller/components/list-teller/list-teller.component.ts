@@ -3,7 +3,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { dtOptionsSearch } from '@app/shared';
-import { TellerService, DropdownService } from '@app/core';
+import { TellerService, DropdownService, UserService } from '@app/core';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Component({
@@ -23,14 +23,17 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
   versionTeller: any[];
   dataIndex: any;
   tellerId: any;
+  isDelete: Boolean = false;
 
   constructor(private tellerService: TellerService,
-    private dropdownService: DropdownService) { }
+    private dropdownService: DropdownService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.getDropdownData();
     this.initDtOptions();
     this.initSearch();
+    this.initDeleteButton();
   }
 
   ngAfterViewInit() {
@@ -66,6 +69,10 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  initDeleteButton() {
+    this.isDelete = this.userService.getRole() !== 'Admin';
+  }
+
   initDtOptions() {
     this.dtOptions = dtOptionsSearch;
   }
@@ -76,16 +83,20 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
       const pageNo = dataTablesParameters.start / dataTablesParameters.length;
       const pageSize = dataTablesParameters.length;
-      this.subscription = this.tellerService.findAllPaging(pageNo, pageSize).subscribe(result => {
-        if (result.tellerResult) {
+      this.subscription = forkJoin(
+        this.tellerService.findAllPaging(pageNo, pageSize),
+        this.dropdownService.findAllBrand(),
+        this.dropdownService.finAllVersion()
+      ).subscribe(result => {
+        if (result[0].tellerResult) {
           this.dataIndex = dataTablesParameters.start;
-          this.recordsTotal = result.recordsTotal;
-          this.tellerService.setDataTables(result.tellerResult, this.brand, this.versionTeller);
-          this.rowDatas = result.tellerResult;
+          this.recordsTotal = result[0].recordsTotal;
+          this.tellerService.setDataTables(result[0].tellerResult, result[1], result[2]);
+          this.rowDatas = result[0].tellerResult;
         }
         callback({
-          recordsTotal: result.recordsTotal,
-          recordsFiltered: result.recordsTotal,
+          recordsTotal: result[0].recordsTotal,
+          recordsFiltered: result[0].recordsTotal,
           data: []
         });
       });

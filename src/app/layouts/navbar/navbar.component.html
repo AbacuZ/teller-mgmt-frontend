@@ -23,7 +23,7 @@
         </a>
       </li>
     </ul>
-    <ul class="nav navbar-nav single-nav">
+    <ul class="nav navbar-nav single-nav" *ngIf="userService.getRole() === 'Admin'">
       <li class="nav-border-icon-single">
         <a routerLink="/user/search">User Mangement</a>
       </li>
@@ -33,7 +33,7 @@
       <ul class="nav navbar-nav">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a class="dropdown-toggle nav-border-icon" data-toggle="dropdown" >
+            <a class="dropdown-toggle nav-border-icon" data-toggle="dropdown">
               <i class="fa fa-user-o" aria-hidden="true"></i> {{ userService.getUsername() }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">

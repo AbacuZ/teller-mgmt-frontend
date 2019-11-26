@@ -48,7 +48,7 @@
                         <a class="cursor-pointer">
                           <p data-placement="top" data-toggle="tooltip" title="Delete">
                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete"
-                              (click)="setModal(rowData.tellerId)">
+                              (click)="setModal(rowData.tellerId)" [disabled]="isDelete">
                               <span class="glyphicon glyphicon-trash"></span>
                             </button>
                           </p>

@@ -64,13 +64,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscription = this.userService.userLogin(this.loginForm.value.user, this.loginForm.value.password)
         .subscribe(result => {
           if (result.valid) {
-            this.subscription = this.userService.findByUsername(this.loginForm.value.user).subscribe(
-              async res => {
+            this.subscription = this.userService.findByUsername(this.loginForm.value.user).subscribe(async res => {
+              this.subscription = this.userService.findRoleById(res.roleId).subscribe(async item => {
                 this.authService.setLogin(this.loginForm.value.user);
-                this.userService.setCurrentUser(res);
+                this.userService.setCurrentUser(res, item);
                 this.router.navigate(['/search']);
-              }
-            );
+              });
+            });
           }
         }
         );

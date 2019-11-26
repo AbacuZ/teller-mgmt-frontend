@@ -11,7 +11,7 @@ export class UserService {
   private API = environment.endpoint;
   private USER_API = this.API + '/api/v1/tellermgmt/user';
   private EDIT_USER_API = this.API + '/api/v1/tellermgmt/user/edit';
-  private DELETE_USER_API = this.API + '/api/v1/tellerment/user/delete';
+  private ROLE_API = this.API + '/api/v1/tellermgmt/role';
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +28,10 @@ export class UserService {
 
   findByUsername(username: any): Observable<any> {
     return this.http.get(this.USER_API + '/' + 'find-by-username' + '/' + username);
+  }
+
+  findRoleById(id: any): Observable<any> {
+    return this.http.get(this.ROLE_API + '/' + id);
   }
 
   userLogin(username: any, password: any): Observable<any> {
@@ -62,19 +66,24 @@ export class UserService {
     this.user.Clear();
   }
 
-  setCurrentUser(data: any) {
+  setCurrentUser(data: any, role: any) {
     this.currentUser.email = data.email;
     this.currentUser.firstname = data.firstname;
     this.currentUser.lastname = data.lastname;
     this.currentUser.password = data.password;
     this.currentUser.position = data.position;
     this.currentUser.roleId = data.roleId;
+    this.currentUser.roleName = role.roleName;
     this.currentUser.telephone = data.telephone;
     this.currentUser.username = data.username;
   }
 
   getUsername() {
     return this.currentUser.username;
+  }
+
+  getRole() {
+    return this.currentUser.roleName;
   }
 
 }
