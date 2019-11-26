@@ -267,6 +267,7 @@
                     class="form-control" 
                     formControlName="versionTellerId" 
                     name="versionTellerId" 
+                    (change)="onVersionChange($event)" 
                     [ngClass]="{ 'is-invalid': isNextForm && f.versionTellerId.errors }"
                   >
                     <option value="">Select Version</option>
@@ -287,7 +288,7 @@
                     [ngClass]="{ 'is-invalid': isNextForm && f.brandTellerId.errors }"
                   >
                     <option value="">Select Brand</option>
-                    <option *ngFor="let brand of brands" [value]="brand.brandId">
+                    <option *ngFor="let brand of brands" [value]="brand.brandTellerId">
                       {{ brand.brandTellerName }}
                     </option>
                   </select>

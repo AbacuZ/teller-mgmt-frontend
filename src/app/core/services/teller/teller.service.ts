@@ -44,7 +44,11 @@ export class TellerService {
     return this.http.put(this.TELLER_API, data);
   }
 
-  setTellerAndTellerDetails(result: any, res: any) {
+  deleteTeller(id: any): Observable<any> {
+    return this.http.delete(this.TELLER_API + '/' + id);
+  }
+
+  setTellerAndTellerDetails(result: any, res: any, res1: any) {
     this.teller.tellerId = result.tellerId;
     this.teller.tellerNo = result.tellerNo;
     this.teller.tellerAddress = result.tellerAddress;
@@ -57,9 +61,9 @@ export class TellerService {
     this.teller.zoneId = result.zoneId;
     this.teller.provinceId = result.provinceId;
     this.teller.districtId = result.districtId;
-    this.teller.versionTellerId = result.versionTellerId;
-    this.teller.brandTellerId = result.brandTellerId;
-    this.teller.typeTellerId = result.typeTellerId;
+    this.teller.versionTellerId = res1.versionTellerId;
+    this.teller.brandTellerId = res1.brandTellerId;
+    this.teller.typeTellerId = res1.typeTellerId;
     this.teller.typeAddressId = result.typeAddressId;
     this.tellerDetails.tellerDetailsId = res.tellerDetailsId;
     this.tellerDetails.indexMasterKey = res.indexMasterKey;

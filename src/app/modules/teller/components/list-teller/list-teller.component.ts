@@ -82,4 +82,10 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
+  setModal(id: any) {
+    this.subscription = this.tellerService.deleteTeller(id).subscribe(result => {
+      this.initSearch();
+    });
+  }
+
 }

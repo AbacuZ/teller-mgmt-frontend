@@ -78,14 +78,26 @@ export class CreateTellerComponent implements OnInit, OnDestroy {
       provinceId: ['', Validators.required],
       districtId: ['', Validators.required],
       versionTellerId: ['', Validators.required],
-      brandTellerId: ['', Validators.required],
-      typeTellerId: ['', Validators.required],
+      brandTellerId: [{ value: '', disabled: true }, Validators.required],
+      typeTellerId: [{ value: '', disabled: true }, Validators.required],
       typeAddressId: ['', Validators.required]
     });
   }
 
   get f() {
     return this.createTellerForm.controls;
+  }
+
+  onVersionChange(event: any) {
+    if (event.target.value) {
+      this.subscription = this.dropdownService.findVersionById(+event.target.value).subscribe(res => {
+        this.createTellerForm.controls['brandTellerId'].setValue(res.brandTellerId);
+        this.createTellerForm.controls['typeTellerId'].setValue(res.typeTellerId);
+      });
+    } else {
+      this.createTellerForm.controls['brandTellerId'].setValue('');
+      this.createTellerForm.controls['typeTellerId'].setValue('');
+    }
   }
 
   clearForm() {

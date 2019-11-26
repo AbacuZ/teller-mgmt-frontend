@@ -25,6 +25,10 @@ export class DropdownService {
     return this.http.get(this.VERSION_API);
   }
 
+  findVersionById(id: any): Observable<any> {
+    return this.http.get(this.VERSION_API + '/' + id);
+  }
+
   findAllProvince(): Observable<any> {
     return this.http.get(this.PROVINCE_API);
   }
