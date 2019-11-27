@@ -24,3 +24,7 @@ html, body {
 .dataTables_empty {
   display: none;
 }
+
+my-date-picker.ng-invalid.is-invalid-date .mydp {
+  border: 1px solid red !important;
+}

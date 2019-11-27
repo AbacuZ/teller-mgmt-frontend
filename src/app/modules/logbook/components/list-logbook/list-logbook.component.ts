@@ -20,6 +20,7 @@ export class ListLogbookComponent implements OnInit, AfterViewInit, OnDestroy {
   rowDatas: any[];
   idParams: number = +this.route.snapshot.paramMap.get('id');
   isDelete: Boolean = false;
+  logBookId: any;
 
   constructor(private route: ActivatedRoute,
     private userService: UserService,
@@ -65,6 +66,17 @@ export class ListLogbookComponent implements OnInit, AfterViewInit, OnDestroy {
   initSearch() {
     this.subscription = this.logbookService.findLogBookByTellerId(this.idParams).subscribe(result => {
       this.rowDatas = result;
+    });
+  }
+
+  setModal(id: any) {
+    this.logBookId = id;
+  }
+
+  deleteRow() {
+    this.subscription = this.logbookService.deleteLogBook(this.logBookId).subscribe(result => {
+      $('.psn-close').click();
+      this.initSearch();
     });
   }
 

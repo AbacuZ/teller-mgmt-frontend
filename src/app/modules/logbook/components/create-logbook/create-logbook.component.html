@@ -1,3 +1,87 @@
-<p>
-  create-logbook works!
-</p>
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Create Technical LogBook
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/home']"><i class="fa fa-dashboard"></i> หน้าหลัก</a></li>
+        <li class="active"><a [routerLink]="['/logbook/search', idParams]">Technical LogBook Mangement</a></li>
+        <li class="active"><a [routerLink]="['/logbook/create', idParams]">สร้าง Technical LogBook</a></li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="box">
+        <div class="box-body wrapper-doc">
+          <form novalidate [formGroup]="createLogBookForm">
+            <div class="form-group row">
+              <label class="col-xs-2 col-form-label">TellerNo<span class="text-danger">*</span></label>
+              <div class="col-sm-4">
+                <input
+                  type="text" 
+                  class="form-control" 
+                  id="tellerNo" 
+                  formControlName="tellerNo" 
+                  name="tellerNo" 
+                  [ngClass]="{ 'is-invalid': isNextForm && f.tellerNo.errors }"
+                >
+                <div class="invalid-feedback" *ngIf="isNextForm && f.tellerNo.errors">
+                  <div *ngIf="f.tellerNo.errors.required">Please insert tellerNo</div>
+                </div>
+              </div>
+              <label class="col-xs-2 col-form-label">Datetime<span class="text-danger">*</span></label>
+              <div class="col-sm-4">
+                <my-date-picker
+                  [options]="dateTimePickerOptions" 
+                  [formControl]="createLogBookForm.controls['dateTime']" 
+                  locale="th" 
+                  name="dateTime" 
+                  id="dateTime" 
+                  [ngClass]="{ 'is-invalid-date' : isNextForm && f.dateTime.errors }" 
+                  [placeholder]="placeholder"
+                >
+                </my-date-picker>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-xs-2 col-form-label">Problem<span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <textarea 
+                  class="form-control" 
+                  formControlName="problem" 
+                  name="problem"
+                  [ngClass]="{ 'is-invalid' : isNextForm && f.problem.errors }"
+                ></textarea>
+                <div class="invalid-feedback" *ngIf="isNextForm && f.problem.errors">
+                  <div *ngIf="f.problem.errors.required">Please insert problem</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-xs-2 col-form-label">Solution<span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <textarea 
+                  class="form-control" 
+                  formControlName="solution" 
+                  name="solution"
+                  [ngClass]="{ 'is-invalid' : isNextForm && f.solution.errors }"
+                ></textarea>
+                <div class="invalid-feedback" *ngIf="isNextForm && f.solution.errors">
+                  <div *ngIf="f.solution.errors.required">Please insert solution</div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="text-right">
+              <button type="button" class="btn btn-default" [routerLink]="['/logbook/search', idParams]">Cancel</button>
+              <button type="button" class="btn btn-primary" (click)="save()">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

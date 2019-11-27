@@ -40,7 +40,7 @@
                   <tbody>
                     <tr *ngFor="let rowData of rowDatas; let i = index">
                       <td>{{ i + 1 }} </td>
-                      <td><a [routerLink]="['/teller/edit', rowData.tellerId]">{{ rowData.dateTime }}</a></td>
+                      <td><a [routerLink]="['/logbook/edit', rowData.tellerId, rowData.logBookId]">{{ rowData.dateTime }}</a></td>
                       <td>{{ rowData.problem }}</td>
                       <td>{{ rowData.solution }}</td>
                       <td>{{ rowData.username }}</td>
@@ -48,7 +48,7 @@
                         <a class="cursor-pointer">
                           <p data-placement="top" data-toggle="tooltip" title="Delete">
                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete"
-                              (click)="setModal(rowData.logbookId)" [disabled]="isDelete">
+                              (click)="setModal(rowData.logBookId)" [disabled]="isDelete">
                               <span class="glyphicon glyphicon-trash"></span>
                             </button>
                           </p>

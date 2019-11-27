@@ -7,12 +7,17 @@ import { CreateLogbookComponent } from './components/create-logbook/create-logbo
 import { EditLogbookComponent } from './components/edit-logbook/edit-logbook.component';
 import { DataTablesModule } from 'angular-datatables';
 import { LogBookService } from '@app/core';
+import { MyDatePickerModule } from 'mydatepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     LogbookRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    MyDatePickerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ListLogbookComponent,

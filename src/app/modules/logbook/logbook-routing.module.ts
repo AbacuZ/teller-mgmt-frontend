@@ -20,7 +20,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'edit/:id',
+    path: 'edit/:tellerId/:logbookId',
     component: EditLogbookComponent,
     data: {
       title: 'แก้ไข'

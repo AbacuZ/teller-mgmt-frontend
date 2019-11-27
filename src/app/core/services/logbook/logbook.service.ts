@@ -3,6 +3,7 @@ import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { LogBook } from './logbook.model';
+import { setDateThaiDatabase } from '@app/shared';
 
 @Injectable()
 export class LogBookService {
@@ -10,6 +11,7 @@ export class LogBookService {
   private API = environment.endpoint;
   private LOGBOOK_API = this.API + '/api/v1/tellermgmt/logbook';
   private LOGBOOK_TELLER_ID_API = this.API + '/api/v1/tellermgmt/logbook/find-by-teller-id';
+  private TELLER_API = this.API + '/api/v1/tellermgmt/teller';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +23,10 @@ export class LogBookService {
 
   findById(id: any): Observable<any> {
     return this.http.get(this.LOGBOOK_API + '/' + id);
+  }
+
+  findTellerById(id: any): Observable<any> {
+    return this.http.get(this.TELLER_API + '/' + id);
   }
 
   createLogBook(): Observable<any> {
@@ -35,20 +41,20 @@ export class LogBookService {
     return this.http.delete(this.LOGBOOK_API + '/' + id);
   }
 
-  setLogbook(data: any, username: any) {
-    this.logbook.dateTime = data.datetime;
+  setLogbook(data: any, username: any, tellerId: any) {
+    this.logbook.dateTime = setDateThaiDatabase(data.dateTime) + ' ' + this.time();
     this.logbook.problem = data.problem;
     this.logbook.solution = data.solution;
-    this.logbook.tellerId = data.tellerId;
+    this.logbook.tellerId = tellerId;
     this.logbook.username = username;
   }
 
-  setUpdateLogbook(data: any, username: any, logbookId: any) {
+  setUpdateLogbook(data: any, username: any, tellerId: any, logbookId: any) {
     this.logbook.logbookId = logbookId;
-    this.logbook.dateTime = data.datetime;
+    this.logbook.dateTime = setDateThaiDatabase(data.dateTime) + ' ' + this.time();
     this.logbook.problem = data.problem;
     this.logbook.solution = data.solution;
-    this.logbook.tellerId = data.tellerId;
+    this.logbook.tellerId = tellerId;
     this.logbook.username = username;
   }
 
@@ -58,6 +64,12 @@ export class LogBookService {
 
   clear() {
     this.logbook.Clear();
+  }
+
+  private time() {
+    const today = new Date();
+    const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    return time;
   }
 
 }
