@@ -74,6 +74,7 @@ export class CreateLogbookComponent implements OnInit, OnDestroy {
     if (this.saveForm(this.createLogBookForm)) {
       this.subscription = this.logbookService.createLogBook().subscribe(result => {
         if (result) {
+          this.logbookService.clear();
           this.router.navigate(['/logbook/search', this.idParams]);
         }
       });

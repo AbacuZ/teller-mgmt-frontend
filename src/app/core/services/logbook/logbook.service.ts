@@ -49,8 +49,8 @@ export class LogBookService {
     this.logbook.username = username;
   }
 
-  setUpdateLogbook(data: any, username: any, tellerId: any, logbookId: any) {
-    this.logbook.logbookId = logbookId;
+  setUpdateLogbook(data: any, username: any, tellerId: any, logBookId: any) {
+    this.logbook.logBookId = logBookId;
     this.logbook.dateTime = setDateThaiDatabase(data.dateTime) + ' ' + this.time();
     this.logbook.problem = data.problem;
     this.logbook.solution = data.solution;

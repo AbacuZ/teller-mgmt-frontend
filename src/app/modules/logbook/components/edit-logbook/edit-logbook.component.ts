@@ -85,6 +85,7 @@ export class EditLogbookComponent implements OnInit, OnDestroy {
     if (this.saveForm(this.updateLogBookForm)) {
       this.subscription = this.logbookService.updateLogBook().subscribe(result => {
         if (result) {
+          this.logbookService.clear();
           this.router.navigate(['/logbook/search', this.tellerId]);
         }
       });
