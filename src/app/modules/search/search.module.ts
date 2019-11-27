@@ -14,8 +14,8 @@ import { SearchService } from '@app/core';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBcMxzBTl9YBN2cCQP16u1uj1swsi2bsJc'
-    }),
+      apiKey: 'AIzaSyAaYrY2xomIlXn_kJdK139_-SlqIIRP6TY'
+    })
   ],
   declarations: [
     SearchComponent

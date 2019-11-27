@@ -7,3 +7,5 @@ export * from './modal/modal.modal';
 export * from './modal/modal.service';
 export * from './search/search.model';
 export * from './search/search.service';
+export * from './logbook/logbook.model';
+export * from './logbook/logbook.service';

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DropdownService, SearchService } from '@app/core';
 import { Subscription } from 'rxjs/Subscription';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -34,7 +35,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
-    private searchService: SearchService) { }
+    private searchService: SearchService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getDropdownData();
@@ -116,6 +118,11 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.latitude = +this.tellerActive.latitude;
       this.longitude = +this.tellerActive.longitude;
     });
+  }
+
+  logbook(id: any) {
+    $('.psn-close').click();
+    this.router.navigate(['/logbook/search', id]);
   }
 
 }

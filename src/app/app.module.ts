@@ -26,8 +26,8 @@ import { ModalComponent } from './layouts/modal/modal.component';
     ReactiveFormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBcMxzBTl9YBN2cCQP16u1uj1swsi2bsJc'
-    }),
+      apiKey: 'AIzaSyAaYrY2xomIlXn_kJdK139_-SlqIIRP6TY'
+    })
   ],
   providers: [
     AuthGuard,

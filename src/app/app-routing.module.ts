@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: '', loadChildren: './modules/search/search.module#SearchModule' },
       { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
       { path: 'teller', loadChildren: './modules/teller/teller.module#TellerModule' },
-      { path: 'logbook', loadChildren: './modules/teller/teller.module#LogbookModule' }
+      { path: 'logbook', loadChildren: './modules/logbook/logbook.module#LogbookModule' }
     ]
   },
   { path: 'login', component: LoginComponent, data: { title: 'ล็อคอิน' } },
