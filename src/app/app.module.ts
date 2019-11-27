@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
@@ -25,6 +25,9 @@ import { ModalComponent } from './layouts/modal/modal.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBcMxzBTl9YBN2cCQP16u1uj1swsi2bsJc'
+    }),
   ],
   providers: [
     AuthGuard,

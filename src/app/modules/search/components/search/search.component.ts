@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { DropdownService } from '@app/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DropdownService, SearchService } from '@app/core';
 import { Subscription } from 'rxjs/Subscription';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   searchForm: FormGroup;
   subscription: Subscription;
+  isNextForm: Boolean = false;
   versions: any[];
   brands: any[];
   districts: any[];
@@ -20,9 +21,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   typeTellers: any[];
   zones: any[];
   addressTypes: any[];
+  rowDatas: any[];
+  lat = 13.737068;
+  lng = 100.5408151;
+  tellerActive: any;
+  tellerDetailsActive: any;
+  districtActive: any;
+  provinceActive: any;
+  zoneActive: any;
+  latitude = 13.737068;
+  longitude = 100.5408151;
 
   constructor(private formBuilder: FormBuilder,
-    private dropdownService: DropdownService) { }
+    private dropdownService: DropdownService,
+    private searchService: SearchService) { }
 
   ngOnInit() {
     this.getDropdownData();
@@ -53,12 +65,56 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.searchForm = this.formBuilder.group({
-      tellerAddress: [''],
+      tellerAddress: ['', Validators.required],
       zone: [''],
       province: [''],
       district: [''],
       addressType: [''],
       versionTeller: ['']
+    });
+  }
+
+  get f() {
+    return this.searchForm.controls;
+  }
+
+  clear() {
+    this.isNextForm = false;
+    this.searchForm.reset();
+    this.initForm();
+    this.searchService.clearResult();
+  }
+
+  saveForm(form: any) {
+    this.isNextForm = true;
+
+    if (form.invalid) {
+      return false;
+    }
+
+    this.searchService.setSearchCriteria(this.searchForm.value);
+    return true;
+  }
+
+  find() {
+    if (this.saveForm(this.searchForm)) {
+      this.subscription = this.searchService.findMap().subscribe(async result => {
+        this.searchService.clearResult();
+        this.searchService.setResult(result);
+        this.rowDatas = this.searchService.getResult();
+      });
+    }
+  }
+
+  onClickTellerAddress(tellerId: any, tellerDetailsId: any) {
+    this.subscription = this.searchService.findTellerDetailsById(tellerDetailsId).subscribe(async result => {
+      this.tellerActive = this.rowDatas.find(res => res.tellerId === tellerId);
+      this.districtActive = this.districts.find(res => res.districtId === this.tellerActive.districtId);
+      this.provinceActive = this.provinces.find(res => res.provinceId === this.tellerActive.provinceId);
+      this.zoneActive = this.zones.find(res => res.zoneId === this.tellerActive.zoneId);
+      this.tellerDetailsActive = result;
+      this.latitude = +this.tellerActive.latitude;
+      this.longitude = +this.tellerActive.longitude;
     });
   }
 

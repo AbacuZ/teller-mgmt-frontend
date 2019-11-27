@@ -5,3 +5,5 @@ export * from './role/role.service';
 export * from './teller/teller.service';
 export * from './modal/modal.modal';
 export * from './modal/modal.service';
+export * from './search/search.model';
+export * from './search/search.service';

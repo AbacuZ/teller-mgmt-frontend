@@ -1,0 +1,31 @@
+#map {
+  height: 500px;
+}
+
+.teller-address {
+  max-height: 500px;
+  overflow-y: auto;
+  font-weight: bold;
+}
+
+.teller-address:hover {
+  cursor: pointer;
+}
+
+.teller-address-text:nth-child(odd) {
+  padding: 10px;
+}
+
+.teller-address-text:nth-child(even) {
+  padding: 10px;
+  background-color: #d2d6de;
+}
+
+#mapDetail {
+  height: 400px;
+}
+
+.map-text {
+  padding: 5px;
+  font-weight: bold;
+}

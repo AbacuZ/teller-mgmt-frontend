@@ -32,7 +32,8 @@
                     class="form-control" 
                     type="text" 
                     formControlName="tellerAddress" 
-                    name="tellerAddress"
+                    name="tellerAddress" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.tellerAddress.errors }"
                   >
                 </div>
               </div>
@@ -75,17 +76,6 @@
                 <div class="col-sm-4">
                   <select 
                     class="form-control" 
-                    formControlName="addressType" 
-                  >
-                    <option value="">Address Type</option>
-                    <option *ngFor="let addressType of addressTypes" [value]="addressType.typeAddressId">
-                      {{ addressType.typeAddressName }}
-                    </option>
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <select 
-                    class="form-control" 
                     formControlName="versionTeller" 
                   >
                     <option value="">Version Teller</option>
@@ -94,18 +84,111 @@
                     </option>
                   </select>
                 </div>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="addressType" 
+                  >
+                    <option value="">Address Type</option>
+                    <option *ngFor="let addressType of addressTypes" [value]="addressType.typeAddressId">
+                      {{ addressType.typeAddressName }}
+                    </option>
+                  </select>
+                </div>
               </div>
               <hr>
               <div class="text-right">
-                <button type="button" class="btn btn-default" (click)="reset()">Report</button>
+                <button type="button" class="btn btn-default" (click)="report()">Report</button>
                 <button type="button" class="btn btn-primary" (click)="find()">Search</button>
-                <button type="button" class="btn btn-default" (click)="reset()">Clear</button>
+                <button type="button" class="btn btn-default" (click)="clear()">Clear</button>
               </div>
             </fieldset>
           </form>
         </div>
       </div>
+      <div class="row scroll-to-table">
+        <div class="col-md-12 text-caption-before-table">
+          <h4> ผลการค้นหา <small>หากต้องการแสดงตำแหน่งแผนที่ เลือกรายการที่ต้องการ</small></h4>
+        </div>
+      </div>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-4 teller-address">
+              <div 
+                class="teller-address-text" 
+                *ngFor="let rowData of rowDatas" 
+                (click)="onClickTellerAddress(rowData.tellerId, rowData.tellerDetailsId)" 
+                data-toggle="modal" data-target="#viewMapById"
+              >
+                {{ rowData.tellerAddress }}
+              </div>
+            </div>
+            <div class="col-md-8">
+              <agm-map id="map" [latitude]="lat" [longitude]="lng" [usePanning]="true">
+                <agm-marker  
+                  *ngFor="let rowData of rowDatas; let i = index" 
+                  [latitude]="rowData.latitude" 
+                  [longitude]="rowData.longitude"
+                >
+                </agm-marker>
+              </agm-map>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
+</div>
+
+<div class="modal fade" id="viewMapById" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span class="glyphicon glyphicon-remove psn-close" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="tellerActive != null">
+          <div class="col-md-5">
+            <div class="box">
+              <div class="box-header with-border box-header-search">
+                <h3 class="box-title">ธนาคารออมสินสาขา{{ tellerActive.tellerAddress }}</h3>
+              </div>
+              <div class="box-body">
+                <div class="map-text">Teller No: {{ tellerActive.tellerNo }}</div>
+                <div class="map-text">Zone: {{ zoneActive.zoneName }}</div>
+                <div class="map-text">Province: {{ provinceActive.provinceNameThai }}</div>
+                <div class="map-text">District: {{ districtActive.districtNameThai }}</div>
+                <hr>
+                <div class="map-text">IP Address: {{ tellerDetailsActive.ipAddress }}</div>
+                <div class="map-text">IP Gateway: {{ tellerDetailsActive.ipGateway }}</div>
+                <div class="map-text">Service Port: {{ tellerDetailsActive.servicePort }}</div>
+                <div class="map-text">Local Port: {{ tellerDetailsActive.localPort }}</div>
+                <div class="map-text">Index Master Key: {{ tellerDetailsActive.indexMasterKey }}</div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary" (click)="logbook()">Technical LogBook</button>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <agm-map id="mapDetail" [zoom]="17" [latitude]="latitude" [longitude]="longitude" [usePanning]="true">
+              <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+            </agm-map>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer ">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">
+          <span class="glyphicon glyphicon-remove"></span> Close
+        </button> -->
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
