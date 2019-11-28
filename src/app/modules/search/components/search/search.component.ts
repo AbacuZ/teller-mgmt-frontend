@@ -33,6 +33,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   latitude = 13.737068;
   longitude = 100.5408151;
   markers: any[] = [];
+  iconUrl: any = {
+    url: 'assets/images/pin.svg',
+    scaledSize: {
+      width: 30,
+      height: 40
+    }
+  };
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
