@@ -26,12 +26,12 @@ export class SearchService {
   }
 
   setSearchCriteria(data: any) {
-    this.searchCriteria.districtId = data.districtId;
-    this.searchCriteria.provinceId = data.provinceId;
+    this.searchCriteria.districtId = data.district;
+    this.searchCriteria.provinceId = data.province;
     this.searchCriteria.tellerAddress = data.tellerAddress;
-    this.searchCriteria.typeAddressId = data.typeAddressId;
-    this.searchCriteria.versionTellerId = data.versionTellerId;
-    this.searchCriteria.zoneId = data.zoneId;
+    this.searchCriteria.typeAddressId = data.addressType;
+    this.searchCriteria.versionTellerId = data.versionTeller;
+    this.searchCriteria.zoneId = data.zone;
   }
 
   getSearchCriteria() {
