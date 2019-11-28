@@ -126,11 +126,11 @@
               </div>
             </div>
             <div class="col-md-8">
-              <agm-map id="map" [latitude]="lat" [longitude]="lng" [usePanning]="true">
+              <agm-map id="map" [latitude]="lat" [longitude]="lng">
                 <agm-marker  
-                  *ngFor="let rowData of rowDatas; let i = index" 
-                  [latitude]="rowData.latitude" 
-                  [longitude]="rowData.longitude"
+                  *ngFor="let m of markers; let i = index" 
+                  [latitude]="m.lat" 
+                  [longitude]="m.lng" 
                 >
                 </agm-marker>
               </agm-map>

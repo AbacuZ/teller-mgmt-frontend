@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   zoneActive: any;
   latitude = 13.737068;
   longitude = 100.5408151;
+  markers: any[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
@@ -101,8 +102,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   find() {
     if (this.saveForm(this.searchForm)) {
       this.subscription = this.searchService.findMap().subscribe(async result => {
+        this.markers = [];
         this.searchService.clearResult();
         this.searchService.setResult(result);
+        this.setMarkers(result);
         this.rowDatas = this.searchService.getResult();
       });
     }
@@ -123,6 +126,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   logbook(id: any) {
     $('.psn-close').click();
     this.router.navigate(['/logbook/search', id]);
+  }
+
+  setMarkers(data: any[]) {
+    data.forEach(res => {
+      this.markers.push({
+        lat: +res.latitude,
+        lng: +res.longitude,
+        label: {
+          color: '#CC0000',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          text: res.tellerAddress
+        }
+      });
+    });
   }
 
 }
