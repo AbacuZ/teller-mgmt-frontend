@@ -26,54 +26,30 @@
           <form novalidate [formGroup]="searchForm">
             <fieldset>
               <div class="form-group row">
-                <label class="col-xs-1 col-form-label">Search</label>
-                <div class="col-sm-11">
-                  <input 
-                    class="form-control" 
-                    type="text" 
-                    formControlName="tellerAddress" 
-                    name="tellerAddress" 
-                    [ngClass]="{ 'is-invalid': isNextForm && f.tellerAddress.errors }"
-                  >
+                <div class="col-sm-3">
+                  <label class="col-form-label">Terminal ID :</label>
+                  <div>
+                    <input 
+                      class="form-control" 
+                      type="text" 
+                      formControlName="tellerNo" 
+                      name="tellerNo" 
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <select 
-                    class="form-control" 
-                    formControlName="zone" 
-                  >
-                    <option value="">Zone</option>
-                    <option *ngFor="let zone of zones" [value]="zone.zoneId">
-                      {{ zone.zoneName }}
-                    </option>
-                  </select>
+                <div class="col-sm-3">
+                  <label class="col-form-label">ชื่อตู้ :</label>
+                  <div>
+                    <input 
+                      class="form-control" 
+                      type="text" 
+                      formControlName="tellerAddress" 
+                      name="tellerAddress" 
+                    >
+                  </div>
                 </div>
-                <div class="col-sm-4">
-                  <select 
-                    class="form-control" 
-                    formControlName="province" 
-                  >
-                    <option value="">Province</option>
-                    <option *ngFor="let province of provinces" [value]="province.provinceId">
-                      {{ province.provinceNameThai }}
-                    </option>
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <select 
-                    class="form-control" 
-                    formControlName="district" 
-                  >
-                    <option value="">District</option>
-                    <option *ngFor="let district of districts" [value]="district.districtId">
-                      {{ district.districtNameThai }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                  <label class="col-form-label">เวอร์ชั่น :</label>
                   <select 
                     class="form-control" 
                     formControlName="versionTeller" 
@@ -84,7 +60,8 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                  <label class="col-form-label">ประเภทตู้ :</label>
                   <select 
                     class="form-control" 
                     formControlName="addressType" 
@@ -92,6 +69,45 @@
                     <option value="">Address Type</option>
                     <option *ngFor="let addressType of addressTypes" [value]="addressType.typeAddressId">
                       {{ addressType.typeAddressName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="col-form-label">โซน :</label>
+                  <select 
+                    class="form-control" 
+                    formControlName="zone" 
+                  >
+                    <option value="">Zone</option>
+                    <option *ngFor="let zone of zones" [value]="zone.zoneId">
+                      {{ zone.zoneName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-sm-3">
+                  <label class="col-form-label">จังหวัด :</label>
+                  <select 
+                    class="form-control" 
+                    formControlName="province" 
+                    (change)="onChangeProvince($event)"
+                  >
+                    <option value="">Province</option>
+                    <option *ngFor="let province of provinces" [value]="province.provinceId">
+                      {{ province.provinceNameThai }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-sm-3">
+                  <label class="col-form-label">เขต/อำเภอ :</label>
+                  <select 
+                    class="form-control" 
+                    formControlName="district" 
+                  >
+                    <option value="">District</option>
+                    <option *ngFor="let district of districts" [value]="district.districtId">
+                      {{ district.districtNameThai }}
                     </option>
                   </select>
                 </div>
@@ -157,7 +173,7 @@
           <div class="col-md-5">
             <div class="box">
               <div class="box-header with-border box-header-search">
-                <h3 class="box-title">ธนาคารออมสินสาขา{{ tellerActive.tellerAddress }}</h3>
+                <h3 class="box-title">ATM {{ tellerActive.tellerAddress }}</h3>
               </div>
               <div class="box-body">
                 <div class="map-text">Teller No: {{ tellerActive.tellerNo }}</div>

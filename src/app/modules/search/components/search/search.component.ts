@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   versions: any[];
   brands: any[];
   districts: any[];
+  districtsInitial: any[];
   provinces: any[];
   typeTellers: any[];
   zones: any[];
@@ -49,6 +50,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getDropdownData();
     this.initForm();
+    this.setCurrentLocation();
   }
 
   ngOnDestroy() {
@@ -68,6 +70,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.versions = result[0];
       this.addressTypes = result[1];
       this.districts = result[2];
+      this.districtsInitial = result[2];
       this.provinces = result[3];
       this.zones = result[4];
     });
@@ -75,6 +78,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.searchForm = this.formBuilder.group({
+      tellerNo: [''],
       tellerAddress: [''],
       zone: [''],
       province: [''],
@@ -86,6 +90,15 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.searchForm.controls;
+  }
+
+  onChangeProvince(event: any) {
+    this.searchForm.controls['district'].setValue('');
+    if (event.target.value) {
+      this.districts = this.districtsInitial.filter(res => +res.provinceId === +event.target.value);
+    } else {
+      this.districts = this.districtsInitial;
+    }
   }
 
   clear() {
@@ -150,4 +163,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        // this.latitude = position.coords.latitude;
+        // this.longitude = position.coords.longitude;
+      });
+    }
+  }
 }
