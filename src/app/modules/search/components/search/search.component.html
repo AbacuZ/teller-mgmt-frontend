@@ -111,12 +111,20 @@
                     </option>
                   </select>
                 </div>
+                <div class="col-sm-3">
+                  <label class="col-form-label">Location :</label>
+                  <button type="button" class="btn btn-primary btn-block" (click)="findLocation()">
+                    <i class="fa fa-location-arrow"></i> ค้นหา ATM สาขาใกล้คุณ
+                  </button>
+                </div>
               </div>
               <hr>
-              <div class="text-right">
-                <button type="button" class="btn btn-default" (click)="report()">Report</button>
-                <button type="button" class="btn btn-primary" (click)="find()">Search</button>
+              <div class="text-center">
+                <button type="button" class="btn btn-primary w-custom" (click)="find()">
+                  <i class="fa fa-search"></i> Search
+                </button>
                 <button type="button" class="btn btn-default" (click)="clear()">Clear</button>
+                <button type="button" class="btn btn-primary" (click)="report()">Report</button>
               </div>
             </fieldset>
           </form>
@@ -149,6 +157,10 @@
                   [longitude]="m.lng" 
                   [iconUrl]="iconUrl"
                 >
+                  <agm-info-window id="info-map">
+                    <div><strong>{{ m.tellerNo }}</strong></div>
+                    <div><strong>{{ m.tellerAddress }}</strong></div>
+                  </agm-info-window>
                 </agm-marker>
               </agm-map>
             </div>
@@ -190,6 +202,11 @@
             </div>
             <div class="text-center">
               <button type="button" class="btn btn-primary" (click)="logbook(tellerActive.tellerId)">Technical LogBook</button>
+              <a 
+                target="_blank" 
+                href="{{ googleURI }}" 
+                class="btn btn-primary"
+              >Direction</a>
             </div>
           </div>
           <div class="col-md-7">

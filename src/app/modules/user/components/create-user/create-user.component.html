@@ -51,7 +51,11 @@
                     [ngClass]="{ 'is-invalid': isNextForm && f.password.errors }"
                   >
                   <div class="invalid-feedback" *ngIf="isNextForm && f.password.errors">
-                    <div *ngIf="f.password.errors.required">Please insert password</div>
+                    <div *ngIf="isNextForm && f.password.errors.required">Please insert password</div>
+                    <div *ngIf="isNextForm && f.password.hasError('minlength')">Password must be at least 8 characters</div>
+                    <div *ngIf="isNextForm && f.password.hasError('hasSmallCase')">Must contain at least 1 Letter in Small Case!</div>
+                    <div *ngIf="isNextForm && f.password.hasError('hasSpecialCharacters')">Must contain at least 1 Special Character!</div>
+                    <div *ngIf="isNextForm && f.password.hasError('hasNumber')">Must contain at least 1 number!</div>
                   </div>
                 </div>
               </div>

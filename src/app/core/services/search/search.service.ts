@@ -25,6 +25,11 @@ export class SearchService {
     return this.http.get(this.TELLER_DETAILS_API + '/' + id);
   }
 
+  findNearestLocation(lat: any, lng: any): Observable<any> {
+    const data = { lat: lat, lng: lng };
+    return this.http.post(this.TELLER_API + '/find-nearest-location', data);
+  }
+
   setSearchCriteria(data: any) {
     this.searchCriteria.districtId = data.district;
     this.searchCriteria.provinceId = data.province;

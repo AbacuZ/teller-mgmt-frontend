@@ -31,3 +31,11 @@
   padding: 5px;
   font-weight: bold;
 }
+
+.p-custom {
+  padding-left: 5px;
+}
+
+.w-custom {
+  width: 200px;
+}

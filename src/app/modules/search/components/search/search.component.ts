@@ -41,6 +41,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       height: 40
     }
   };
+  currentLat = 0;
+  currentLng = 0;
+  googleURI: any;
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
@@ -131,6 +134,16 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
 
+  findLocation() {
+    this.subscription = this.searchService.findNearestLocation(this.currentLat, this.currentLng).subscribe(async result => {
+      this.markers = [];
+      this.searchService.clearResult();
+      this.searchService.setResult(result);
+      this.setMarkers(result);
+      this.rowDatas = this.searchService.getResult();
+    });
+  }
+
   onClickTellerAddress(tellerId: any, tellerDetailsId: any) {
     this.subscription = this.searchService.findTellerDetailsById(tellerDetailsId).subscribe(async result => {
       this.tellerActive = this.rowDatas.find(res => res.tellerId === tellerId);
@@ -140,6 +153,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.tellerDetailsActive = result;
       this.latitude = +this.tellerActive.latitude;
       this.longitude = +this.tellerActive.longitude;
+      this.setGoogleURI(this.tellerActive.latitude, this.tellerActive.longitude);
     });
   }
 
@@ -151,6 +165,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   setMarkers(data: any[]) {
     data.forEach(res => {
       this.markers.push({
+        tellerNo: res.tellerNo,
+        tellerAddress: res.tellerAddress,
         lat: +res.latitude,
         lng: +res.longitude,
         label: {
@@ -166,10 +182,17 @@ export class SearchComponent implements OnInit, OnDestroy {
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-        // this.latitude = position.coords.latitude;
-        // this.longitude = position.coords.longitude;
+        this.currentLat = position.coords.latitude;
+        this.currentLng = position.coords.longitude;
       });
+    }
+  }
+
+  private setGoogleURI(lat: any, lng: any) {
+    if (lat && lng) {
+      this.googleURI = 'https://www.google.com/maps/place/' + lat + ',' + lng;
+    } else {
+      this.googleURI = 'https://www.google.com/maps';
     }
   }
 }

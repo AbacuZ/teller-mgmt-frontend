@@ -28,3 +28,13 @@ html, body {
 my-date-picker.ng-invalid.is-invalid-date .mydp {
   border: 1px solid red !important;
 }
+
+.no-gutter {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.no-gutter > [class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}

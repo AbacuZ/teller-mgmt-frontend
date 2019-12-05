@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { UserService } from '@app/core/services/user/user.service';
 import { RoleService, ModalService } from '@app/core';
 import { Router } from '@angular/router';
+import { CustomValidators } from '@app/shared';
 
 @Component({
   selector: 'app-create-user',
@@ -43,7 +44,13 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   initForm() {
     this.createUserForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.compose([
+        Validators.required,
+        CustomValidators.patternValidator(/\d/, { hasNumber: true }),
+        CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
+        CustomValidators.patternValidator(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, { hasSpecialCharacters: true }),
+        Validators.minLength(8)])
+      ],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       position: [''],

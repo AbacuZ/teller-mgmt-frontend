@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   isShowButton: Boolean = false;
   isShowEye: Boolean = false;
   isNextForm: Boolean = false;
+  isLoginFail: Boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   saveForm(form: any) {
     this.isNextForm = true;
+    this.isLoginFail = false;
 
     if (form.invalid) {
       return false;
@@ -71,6 +73,8 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.router.navigate(['/search']);
               });
             });
+          } else {
+            this.isLoginFail = true;
           }
         }
         );
