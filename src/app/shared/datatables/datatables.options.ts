@@ -4,6 +4,7 @@ export const dtOptions = {
   pageLength: 10,
   searching: false,
   scrollX: false,
+  responsive: true,
   language: {
     info: 'แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว',
     infoEmpty: 'แสดง 0 ถึง 0 จาก 0 แถว',
@@ -24,6 +25,7 @@ export const dtOptionsSearch = {
   info: false,
   pagingType: 'full_numbers',
   pageLength: 10,
+  responsive: true,
   columns: [
     { data: 'no' },
     { data: 'tellerNo' },
@@ -57,6 +59,7 @@ export const dtOptionsLogBook = {
   info: false,
   pagingType: 'full_numbers',
   pageLength: 10,
+  responsive: true,
   columns: [
     { data: 'no' },
     { data: 'date' },
