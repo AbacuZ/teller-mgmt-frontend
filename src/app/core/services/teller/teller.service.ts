@@ -34,6 +34,10 @@ export class TellerService {
     return this.http.get(this.TELLER_DETAILS_API + '/' + id);
   }
 
+  findTellerNoWithPaging(data: any, pageNo: number, pageSize: number): Observable<any> {
+    return this.http.post(this.TELLER_API + '/search-teller-no' + `?pageNo=${pageNo}&pageSize=${pageSize}`, data);
+  }
+
   createTeller(): Observable<any> {
     const data = { teller: this.getTeller(), tellerDetails: this.getTellerDetails() };
     return this.http.post(this.TELLER_API, data);

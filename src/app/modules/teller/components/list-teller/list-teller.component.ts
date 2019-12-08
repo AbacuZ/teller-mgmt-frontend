@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { dtOptionsSearch } from '@app/shared';
 import { TellerService, DropdownService, UserService } from '@app/core';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-teller',
@@ -16,6 +17,7 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(DataTableDirective) dtElement: DataTableDirective;
   dtOptions: any;
   dtTrigger: Subject<any> = new Subject();
+  searchForm: FormGroup;
   subscription: Subscription;
   rowDatas: any[];
   recordsTotal: any = null;
@@ -27,11 +29,13 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private tellerService: TellerService,
     private dropdownService: DropdownService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getDropdownData();
     this.initDtOptions();
+    this.initForm();
     this.initSearch();
     this.initDeleteButton();
   }
@@ -77,6 +81,12 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dtOptions = dtOptionsSearch;
   }
 
+  initForm() {
+    this.searchForm = this.formBuilder.group({
+      tellerNo: ['']
+    });
+  }
+
   initSearch() {
     this.dtOptions.serverSide = true;
     this.dtOptions.deferRender = true;
@@ -101,6 +111,34 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       });
     };
+  }
+
+  find() {
+    this.dtOptions.serverSide = true;
+    this.dtOptions.deferRender = true;
+    this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
+      const pageNo = dataTablesParameters.start / dataTablesParameters.length;
+      const pageSize = dataTablesParameters.length;
+      this.subscription = forkJoin(
+        this.tellerService.findTellerNoWithPaging(this.searchForm.value.tellerNo, pageNo, pageSize),
+        this.dropdownService.findAllBrand(),
+        this.dropdownService.finAllVersion()
+      ).subscribe(result => {
+        console.log(result);
+        if (result[0].tellerResult) {
+          this.dataIndex = dataTablesParameters.start;
+          this.recordsTotal = result[0].recordsTotal;
+          this.tellerService.setDataTables(result[0].tellerResult, result[1], result[2]);
+          this.rowDatas = result[0].tellerResult;
+        }
+        callback({
+          recordsTotal: result[0].recordsTotal,
+          recordsFiltered: result[0].recordsTotal,
+          data: []
+        });
+      });
+    };
+    this.rerender();
   }
 
   setModal(id: any) {
