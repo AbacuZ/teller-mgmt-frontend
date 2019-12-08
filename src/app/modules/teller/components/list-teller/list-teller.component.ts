@@ -114,30 +114,41 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   find() {
-    this.dtOptions.serverSide = true;
-    this.dtOptions.deferRender = true;
-    this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
-      const pageNo = dataTablesParameters.start / dataTablesParameters.length;
-      const pageSize = dataTablesParameters.length;
-      this.subscription = forkJoin(
-        this.tellerService.findTellerNoWithPaging(this.searchForm.value.tellerNo, pageNo, pageSize),
-        this.dropdownService.findAllBrand(),
-        this.dropdownService.finAllVersion()
-      ).subscribe(result => {
-        console.log(result);
-        if (result[0].tellerResult) {
-          this.dataIndex = dataTablesParameters.start;
-          this.recordsTotal = result[0].recordsTotal;
-          this.tellerService.setDataTables(result[0].tellerResult, result[1], result[2]);
-          this.rowDatas = result[0].tellerResult;
-        }
-        callback({
-          recordsTotal: result[0].recordsTotal,
-          recordsFiltered: result[0].recordsTotal,
-          data: []
+    if (this.searchForm.value.tellerNo) {
+      this.dtOptions.serverSide = true;
+      this.dtOptions.deferRender = true;
+      this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
+        const pageNo = dataTablesParameters.start / dataTablesParameters.length;
+        const pageSize = dataTablesParameters.length;
+        this.subscription = forkJoin(
+          this.tellerService.findTellerNoWithPaging(this.searchForm.value.tellerNo, pageNo, pageSize),
+          this.dropdownService.findAllBrand(),
+          this.dropdownService.finAllVersion()
+        ).subscribe(result => {
+          console.log(result);
+          if (result[0].tellerResult) {
+            this.dataIndex = dataTablesParameters.start;
+            this.recordsTotal = result[0].recordsTotal;
+            this.tellerService.setDataTables(result[0].tellerResult, result[1], result[2]);
+            this.rowDatas = result[0].tellerResult;
+          }
+          callback({
+            recordsTotal: result[0].recordsTotal,
+            recordsFiltered: result[0].recordsTotal,
+            data: []
+          });
         });
-      });
-    };
+      };
+    } else {
+      this.initSearch();
+    }
+    this.rerender();
+  }
+
+  clear() {
+    this.searchForm.reset();
+    this.initForm();
+    this.initSearch();
     this.rerender();
   }
 
