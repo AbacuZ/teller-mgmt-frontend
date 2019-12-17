@@ -10,7 +10,9 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <img src="assets/images/logo-vertical.jpg" width="150px" />
+                    <div class="ml-2">
+                      <img src="assets/images/logo-vertical.jpg" class="img-responsive">
+                    </div>
                   </div>
                   <div class="col-sm-9">
                     <form [formGroup]="loginForm" (ngSubmit)="login()">

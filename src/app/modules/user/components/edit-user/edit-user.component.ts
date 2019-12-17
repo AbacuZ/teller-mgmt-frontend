@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService, RoleService, ModalService } from '@app/core';
 import { Subscription } from 'rxjs/Subscription';
+import { CustomValidators } from '@app/shared';
 
 @Component({
   selector: 'app-edit-user',
@@ -45,7 +46,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
   initForm() {
     this.editUserForm = this.formBuilder.group({
       username: [{ value: '', disabled: true }, Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.compose([
+        Validators.required,
+        CustomValidators.patternValidator(/\d/, { hasNumber: true }),
+        CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
+        CustomValidators.patternValidator(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, { hasSpecialCharacters: true }),
+        Validators.minLength(8)])
+      ],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       position: [''],

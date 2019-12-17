@@ -81,8 +81,8 @@ export class EditTellerComponent implements OnInit, OnDestroy {
       provinceId: ['', Validators.required],
       districtId: ['', Validators.required],
       versionTellerId: ['', Validators.required],
-      brandTellerId: [{ value: '', disabled: true }, Validators.required],
-      typeTellerId: [{ value: '', disabled: true }, Validators.required],
+      brandTellerId: ['', Validators.required],
+      typeTellerId: ['', Validators.required],
       typeAddressId: ['', Validators.required]
     });
   }
@@ -93,11 +93,8 @@ export class EditTellerComponent implements OnInit, OnDestroy {
 
   findById(id: any) {
     this.subscription = this.tellerService.findById(id).subscribe(async result => {
-      this.subscription = forkJoin(
-        this.tellerService.findTellerDetailsById(result.tellerDetailsId),
-        this.dropdownService.findVersionById(result.versionTellerId)
-      ).subscribe(async res => {
-        this.tellerService.setTellerAndTellerDetails(result, res[0], res[1]);
+      this.subscription = this.tellerService.findTellerDetailsById(result.tellerDetailsId).subscribe(async res => {
+        this.tellerService.setTellerAndTellerDetails(result, res);
         const tel = this.tellerService.getTeller();
         const telDetails = this.tellerService.getTellerDetails();
         this.updateTellerForm.patchValue({
@@ -127,15 +124,15 @@ export class EditTellerComponent implements OnInit, OnDestroy {
   }
 
   onVersionChange(event: any) {
-    if (event.target.value) {
-      this.subscription = this.dropdownService.findVersionById(+event.target.value).subscribe(res => {
-        this.updateTellerForm.controls['brandTellerId'].setValue(res.brandTellerId);
-        this.updateTellerForm.controls['typeTellerId'].setValue(res.typeTellerId);
-      });
-    } else {
-      this.updateTellerForm.controls['brandTellerId'].setValue('');
-      this.updateTellerForm.controls['typeTellerId'].setValue('');
-    }
+    // if (event.target.value) {
+    //   this.subscription = this.dropdownService.findVersionById(+event.target.value).subscribe(res => {
+    //     this.updateTellerForm.controls['brandTellerId'].setValue(res.brandTellerId);
+    //     this.updateTellerForm.controls['typeTellerId'].setValue(res.typeTellerId);
+    //   });
+    // } else {
+    //   this.updateTellerForm.controls['brandTellerId'].setValue('');
+    //   this.updateTellerForm.controls['typeTellerId'].setValue('');
+    // }
   }
 
   clearForm() {

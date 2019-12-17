@@ -99,6 +99,7 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dropdownService.finAllVersion()
       ).subscribe(result => {
         if (result[0].tellerResult) {
+          console.log(result[0].tellerResult);
           this.dataIndex = dataTablesParameters.start;
           this.recordsTotal = result[0].recordsTotal;
           this.tellerService.setDataTables(result[0].tellerResult, result[1], result[2]);
@@ -125,7 +126,6 @@ export class ListTellerComponent implements OnInit, AfterViewInit, OnDestroy {
           this.dropdownService.findAllBrand(),
           this.dropdownService.finAllVersion()
         ).subscribe(result => {
-          console.log(result);
           if (result[0].tellerResult) {
             this.dataIndex = dataTablesParameters.start;
             this.recordsTotal = result[0].recordsTotal;

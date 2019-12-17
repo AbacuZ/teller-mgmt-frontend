@@ -52,7 +52,7 @@ export class TellerService {
     return this.http.delete(this.TELLER_API + '/' + id);
   }
 
-  setTellerAndTellerDetails(result: any, res: any, res1: any) {
+  setTellerAndTellerDetails(result: any, res: any) {
     this.teller.tellerId = result.tellerId;
     this.teller.tellerNo = result.tellerNo;
     this.teller.tellerAddress = result.tellerAddress;
@@ -65,9 +65,9 @@ export class TellerService {
     this.teller.zoneId = result.zoneId;
     this.teller.provinceId = result.provinceId;
     this.teller.districtId = result.districtId;
-    this.teller.versionTellerId = res1.versionTellerId;
-    this.teller.brandTellerId = res1.brandTellerId;
-    this.teller.typeTellerId = res1.typeTellerId;
+    this.teller.versionTellerId = result.versionTellerId;
+    this.teller.brandTellerId = result.brandTellerId;
+    this.teller.typeTellerId = result.typeTellerId;
     this.teller.typeAddressId = result.typeAddressId;
     this.tellerDetails.tellerDetailsId = res.tellerDetailsId;
     this.tellerDetails.indexMasterKey = res.indexMasterKey;
@@ -113,7 +113,7 @@ export class TellerService {
 
   setDataTables(data: any[], brand: any[], versionTeller: any[]) {
     data.forEach(res => {
-      res['brand'] = this.setBrand(res.versionTellerId, brand, versionTeller);
+      res['brand'] = this.setBrand(res.brandTellerId, brand);
       res['versionTeller'] = this.setversionTeller(res.versionTellerId, versionTeller);
     });
   }
@@ -123,9 +123,8 @@ export class TellerService {
     this.tellerDetails.Clear();
   }
 
-  private setBrand(id: any, brand: any[], versionTeller: any[]) {
-    const data = versionTeller.find(res => res.versionTellerId === id);
-    const result = brand.find(res => res.brandTellerId === data.brandTellerId);
+  private setBrand(id: any, brand: any[]) {
+    const result = brand.find(res => res.brandTellerId === id);
     return result.brandTellerName;
   }
 

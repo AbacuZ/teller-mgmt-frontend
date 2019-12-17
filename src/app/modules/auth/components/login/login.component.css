@@ -72,3 +72,7 @@ input:focus, select:focus, textarea:focus {
 .fa-lg {
   font-size: 20px !important;
 }
+
+.ml-2 {
+  margin-left: 15px;
+}
