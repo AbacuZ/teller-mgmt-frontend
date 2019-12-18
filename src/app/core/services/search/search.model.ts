@@ -3,16 +3,18 @@ export class SearchCriteria {
   provinceId: Number = 0;
   tellerAddress: String = '';
   tellerNo: String = '';
-  typeAddressId: Number = 0;
   versionTellerId: Number = 0;
+  typeTellerId: Number = 0;
+  brandTellerId: Number = 0;
   zoneId: Number = 0;
   Clear() {
     this.districtId = 0;
     this.provinceId = 0;
     this.tellerAddress = '';
     this.tellerNo = '';
-    this.typeAddressId = 0;
     this.versionTellerId = 0;
+    this.typeTellerId = 0;
+    this.brandTellerId = 0;
     this.zoneId = 0;
   }
 }

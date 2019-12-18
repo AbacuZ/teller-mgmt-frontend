@@ -31,13 +31,14 @@ export class SearchService {
   }
 
   setSearchCriteria(data: any) {
-    this.searchCriteria.districtId = data.district;
-    this.searchCriteria.provinceId = data.province;
     this.searchCriteria.tellerAddress = data.tellerAddress;
     this.searchCriteria.tellerNo = data.tellerNo;
-    this.searchCriteria.typeAddressId = data.addressType;
-    this.searchCriteria.versionTellerId = data.versionTeller;
     this.searchCriteria.zoneId = data.zone;
+    this.searchCriteria.districtId = data.district;
+    this.searchCriteria.provinceId = data.province;
+    this.searchCriteria.versionTellerId = data.versionTeller;
+    this.searchCriteria.brandTellerId = data.brandTellerId;
+    this.searchCriteria.typeTellerId = data.typeTellerId;
   }
 
   getSearchCriteria() {
