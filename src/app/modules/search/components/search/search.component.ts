@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DropdownService, SearchService } from '@app/core';
+import { DropdownService, SearchService, ExportExcelService } from '@app/core';
 import { Subscription } from 'rxjs/Subscription';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Router } from '@angular/router';
@@ -48,7 +48,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
     private searchService: SearchService,
-    private router: Router) { }
+    private router: Router,
+    private exportExcelService: ExportExcelService) { }
 
   ngOnInit() {
     this.getDropdownData();
@@ -179,6 +180,12 @@ export class SearchComponent implements OnInit, OnDestroy {
           text: res.tellerAddress
         }
       });
+    });
+  }
+
+  report() {
+    this.subscription = this.searchService.findAll().subscribe(async result => {
+      this.exportExcelService.exportAsExcelFile(result, 'data_teller');
     });
   }
 

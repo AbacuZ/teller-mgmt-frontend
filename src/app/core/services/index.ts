@@ -9,3 +9,4 @@ export * from './search/search.model';
 export * from './search/search.service';
 export * from './logbook/logbook.model';
 export * from './logbook/logbook.service';
+export * from './exportExcel/exportExcelService.service';

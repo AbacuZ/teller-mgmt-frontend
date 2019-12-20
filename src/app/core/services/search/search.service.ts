@@ -21,6 +21,10 @@ export class SearchService {
     return this.http.post(this.SEARCH_TELLER_API, this.getSearchCriteria());
   }
 
+  findAll(): Observable<any> {
+    return this.http.get(this.TELLER_API);
+  }
+
   findTellerDetailsById(id: any): Observable<any> {
     return this.http.get(this.TELLER_DETAILS_API + '/' + id);
   }

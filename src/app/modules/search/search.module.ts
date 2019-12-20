@@ -5,7 +5,7 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import { SearchService } from '@app/core';
+import { SearchService, ExportExcelService } from '@app/core';
 
 @NgModule({
   imports: [
@@ -21,7 +21,8 @@ import { SearchService } from '@app/core';
     SearchComponent
   ],
   providers: [
-    SearchService
+    SearchService,
+    ExportExcelService
   ]
 })
 export class SearchModule { }
