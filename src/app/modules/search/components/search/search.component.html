@@ -38,7 +38,7 @@
                   </div>
                 </div>
                 <div class="col-sm-4">
-                  <label class="col-form-label">ชื่อตู้ :</label>
+                  <label class="col-form-label">Teller Name :</label>
                   <div>
                     <input 
                       class="form-control" 
@@ -57,7 +57,7 @@
               </div>
               <div class="form-group row">
                 <div class="col-sm-4">
-                  <label class="col-form-label">ยี่ห้อ :</label>
+                  <label class="col-form-label">Brand :</label>
                   <select 
                     class="form-control" 
                     formControlName="brandTellerId" 
@@ -69,7 +69,7 @@
                   </select>
                 </div>
                 <div class="col-sm-4">
-                  <label class="col-form-label">เวอร์ชั่น :</label>
+                  <label class="col-form-label">Version :</label>
                   <select 
                     class="form-control" 
                     formControlName="versionTeller" 
@@ -81,7 +81,7 @@
                   </select>
                 </div>
                 <div class="col-sm-4">
-                  <label class="col-form-label">ประเภท :</label>
+                  <label class="col-form-label">Type :</label>
                   <select 
                     class="form-control" 
                     formControlName="versionTeller" 
@@ -95,19 +95,19 @@
               </div>
               <div class="form-group row">
                 <div class="col-sm-4">
-                  <label class="col-form-label">โซน :</label>
+                  <label class="col-form-label">Zone :</label>
                   <select 
                     class="form-control" 
                     formControlName="zone" 
                   >
                     <option value="">เลือก</option>
                     <option *ngFor="let zone of zones" [value]="zone.zoneId">
-                      {{ zone.zoneName }}
+                      {{ 'ภาค ' + zone.zoneId }}
                     </option>
                   </select>
                 </div>
                 <div class="col-sm-4">
-                  <label class="col-form-label">จังหวัด :</label>
+                  <label class="col-form-label">Province :</label>
                   <select 
                     class="form-control" 
                     formControlName="province" 
@@ -120,7 +120,7 @@
                   </select>
                 </div>
                 <div class="col-sm-4">
-                  <label class="col-form-label">เขต/อำเภอ :</label>
+                  <label class="col-form-label">District :</label>
                   <select 
                     class="form-control" 
                     formControlName="district" 

@@ -137,7 +137,7 @@
                   >
                     <option value="">Select Zone</option>
                     <option *ngFor="let zone of zones" [value]="zone.zoneId">
-                      {{ zone.zoneName }}
+                      {{ 'ภาค ' + zone.zoneId }}
                     </option>
                   </select>
                   <div class="invalid-feedback" *ngIf="isNextForm && f.zoneId.errors">
@@ -150,7 +150,8 @@
                     class="form-control" 
                     formControlName="provinceId" 
                     name="provinceId" 
-                    [ngClass]="{ 'is-invalid': isNextForm && f.provinceId.errors }"
+                    [ngClass]="{ 'is-invalid': isNextForm && f.provinceId.errors }" 
+                    (change)="onChangeProvince($event)"
                   >
                     <option value="">Select Province</option>
                     <option *ngFor="let province of provinces" [value]="province.provinceId">
@@ -261,6 +262,23 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Brand<span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                  <select 
+                    class="form-control" 
+                    formControlName="brandTellerId" 
+                    name="brandTellerId" 
+                    [ngClass]="{ 'is-invalid': isNextForm && f.brandTellerId.errors }"
+                  >
+                    <option value="">Select Brand</option>
+                    <option *ngFor="let brand of brands" [value]="brand.brandTellerId">
+                      {{ brand.brandTellerName }}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="isNextForm && f.brandTellerId.errors">
+                    <div *ngIf="f.brandTellerId.errors.required">Please insert brand</div>
+                  </div>
+                </div>
                 <label class="col-xs-2 col-form-label">Version<span class="text-danger">*</span></label>
                 <div class="col-sm-4">
                   <select 
@@ -277,23 +295,6 @@
                   </select>
                   <div class="invalid-feedback" *ngIf="isNextForm && f.versionTellerId.errors">
                     <div *ngIf="f.versionTellerId.errors.required">Please insert version</div>
-                  </div>
-                </div>
-                <label class="col-xs-2 col-form-label">Brand<span class="text-danger">*</span></label>
-                <div class="col-sm-4">
-                  <select 
-                    class="form-control" 
-                    formControlName="brandTellerId" 
-                    name="brandTellerId" 
-                    [ngClass]="{ 'is-invalid': isNextForm && f.brandTellerId.errors }"
-                  >
-                    <option value="">Select Brand</option>
-                    <option *ngFor="let brand of brands" [value]="brand.brandTellerId">
-                      {{ brand.brandTellerName }}
-                    </option>
-                  </select>
-                  <div class="invalid-feedback" *ngIf="isNextForm && f.brandTellerId.errors">
-                    <div *ngIf="f.brandTellerId.errors.required">Please insert brand</div>
                   </div>
                 </div>
               </div>

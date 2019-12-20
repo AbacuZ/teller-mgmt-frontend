@@ -18,6 +18,7 @@ export class EditTellerComponent implements OnInit, OnDestroy {
   versions: any[];
   brands: any[];
   districts: any[];
+  districtsInitial: any[];
   provinces: any[];
   typeTellers: any[];
   zones: any[];
@@ -55,6 +56,7 @@ export class EditTellerComponent implements OnInit, OnDestroy {
       this.versions = result[0];
       this.brands = result[1];
       this.districts = result[2];
+      this.districtsInitial = result[2];
       this.provinces = result[3];
       this.typeTellers = result[4];
       this.zones = result[5];
@@ -133,6 +135,15 @@ export class EditTellerComponent implements OnInit, OnDestroy {
     //   this.updateTellerForm.controls['brandTellerId'].setValue('');
     //   this.updateTellerForm.controls['typeTellerId'].setValue('');
     // }
+  }
+
+  onChangeProvince(event: any) {
+    this.updateTellerForm.controls['districtId'].setValue('');
+    if (event.target.value) {
+      this.districts = this.districtsInitial.filter(res => +res.provinceId === +event.target.value);
+    } else {
+      this.districts = this.districtsInitial;
+    }
   }
 
   clearForm() {
