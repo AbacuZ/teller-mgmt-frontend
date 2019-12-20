@@ -36,7 +36,6 @@ export class SearchService {
 
   setSearchCriteria(data: any) {
     this.searchCriteria.tellerAddress = data.tellerAddress;
-    this.searchCriteria.tellerNo = data.tellerNo;
     this.searchCriteria.zoneId = data.zone;
     this.searchCriteria.districtId = data.district;
     this.searchCriteria.provinceId = data.province;

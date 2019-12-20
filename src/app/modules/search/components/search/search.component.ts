@@ -84,7 +84,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.searchForm = this.formBuilder.group({
-      tellerNo: [''],
       tellerAddress: [''],
       zone: [''],
       province: [''],
