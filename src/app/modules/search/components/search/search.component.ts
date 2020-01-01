@@ -44,6 +44,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentLat = 0;
   currentLng = 0;
   googleURI: any;
+  lastSelectedInfoWindow: any;
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
@@ -188,6 +189,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription = this.searchService.findAll().subscribe(async result => {
       this.exportExcelService.exportAsExcelFile(result, 'data_teller');
     });
+  }
+
+  markerClick(infoWindow: any) {
+    if (infoWindow === this.lastSelectedInfoWindow) {
+      return;
+    }
+    if (this.lastSelectedInfoWindow != null) {
+      try {
+        this.lastSelectedInfoWindow.close();
+      } catch { }
+    }
+    this.lastSelectedInfoWindow = infoWindow;
   }
 
   private setCurrentLocation() {

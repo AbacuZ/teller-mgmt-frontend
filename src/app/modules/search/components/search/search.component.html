@@ -158,9 +158,10 @@
                   *ngFor="let m of markers; let i = index" 
                   [latitude]="m.lat" 
                   [longitude]="m.lng" 
-                  [iconUrl]="iconUrl"
+                  [iconUrl]="iconUrl" 
+                  (markerClick)="markerClick(infoWindow)"
                 >
-                  <agm-info-window id="info-map">
+                  <agm-info-window id="info-map" #infoWindow>
                     <div><strong>{{ m.tellerNo }}</strong></div>
                     <div><strong>{{ m.tellerAddress }}</strong></div>
                   </agm-info-window>
