@@ -76,7 +76,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.brands = result[1];
       this.districts = result[2];
       this.districtsInitial = result[2];
-      this.provinces = result[3];
+      this.provinces = result[3].sort((a: any, b: any) => a.provinceNameThai < b.provinceNameThai ? -1 : 1);
       this.zones = result[4];
       this.typeTellers = result[5];
     });
@@ -101,7 +101,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   onChangeProvince(event: any) {
     this.searchForm.controls['district'].setValue('');
     if (event.target.value) {
-      this.districts = this.districtsInitial.filter(res => +res.provinceId === +event.target.value);
+      this.districts = this.districtsInitial
+        .filter(res => +res.provinceId === +event.target.value)
+        .sort((a: any, b: any) => a.districtNameThai < b.districtNameThai ? -1 : 1);
     } else {
       this.districts = this.districtsInitial;
     }
