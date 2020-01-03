@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   typeTellers: any[];
   zones: any[];
   addressTypes: any[];
-  rowDatas: any[];
+  rowDatas: any[] = [];
   lat = 13.737068;
   lng = 100.5408151;
   tellerActive: any;
@@ -112,6 +112,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   clear() {
     this.isNextForm = false;
+    this.markers = [];
+    this.rowDatas = [];
     this.searchForm.reset();
     this.initForm();
     this.searchService.clearResult();
@@ -135,6 +137,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.searchService.clearResult();
         this.searchService.setResult(result);
         this.setMarkers(result);
+        this.rowDatas = [];
         this.rowDatas = this.searchService.getResult();
       });
     }
