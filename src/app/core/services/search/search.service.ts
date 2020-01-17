@@ -39,6 +39,11 @@ export class SearchService {
     return this.http.post(this.EXPORT_EXCEL_API, this.getSearchCriteria());
   }
 
+  exportExcelMap(lat: any, lng: any): Observable<any> {
+    const data = { lat: lat, lng: lng };
+    return this.http.post(this.TELLER_API + '/export-excel-map', data);
+  }
+
   setSearchCriteria(data: any) {
     this.searchCriteria.tellerAddress = data.tellerAddress;
     this.searchCriteria.zoneId = data.zone;

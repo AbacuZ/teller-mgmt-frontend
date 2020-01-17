@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentLng = 0;
   googleURI: any;
   lastSelectedInfoWindow: any;
+  isClickFindNearest: Boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
@@ -112,6 +113,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   clear() {
     this.isNextForm = false;
+    this.isClickFindNearest = false;
     this.markers = [];
     this.rowDatas = [];
     this.searchForm.reset();
@@ -133,6 +135,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   find() {
     if (this.saveForm(this.searchForm)) {
       this.subscription = this.searchService.findMap().subscribe(async result => {
+        this.isClickFindNearest = false;
         this.markers = [];
         this.searchService.clearResult();
         this.searchService.setResult(result);
@@ -145,6 +148,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   findLocation() {
     this.subscription = this.searchService.findNearestLocation(this.currentLat, this.currentLng).subscribe(async result => {
+      this.isClickFindNearest = true;
       this.markers = [];
       this.searchService.clearResult();
       this.searchService.setResult(result);
@@ -189,9 +193,15 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   report() {
-    this.subscription = this.searchService.exportExcel().subscribe(async result => {
-      this.exportExcelService.exportAsExcelFile(result, 'data_teller');
-    });
+    if (this.isClickFindNearest) {
+      this.subscription = this.searchService.exportExcelMap(this.currentLat, this.currentLng).subscribe(async result => {
+        this.exportExcelService.exportAsExcelFile(result, 'data_teller');
+      });
+    } else {
+      this.subscription = this.searchService.exportExcel().subscribe(async result => {
+        this.exportExcelService.exportAsExcelFile(result, 'data_teller');
+      });
+    }
   }
 
   markerClick(infoWindow: any) {
