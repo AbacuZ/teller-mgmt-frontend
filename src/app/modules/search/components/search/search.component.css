@@ -12,14 +12,18 @@
   cursor: pointer;
 }
 
-.teller-address-text:nth-child(odd) {
+.teller-address-text {
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
+}
+
+.teller-address-text:nth-child(odd) {
   background-color: #e3007b;
   color: #fff;
 }
 
 .teller-address-text:nth-child(even) {
-  padding: 10px;
   background-color: #d2d6de;
 }
 

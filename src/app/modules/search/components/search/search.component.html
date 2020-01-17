@@ -149,7 +149,10 @@
                 (click)="onClickTellerAddress(rowData.tellerId, rowData.tellerDetailsId)" 
                 data-toggle="modal" data-target="#viewMapById"
               >
-                {{ rowData.tellerAddress }}
+                <span>{{ rowData.tellerAddress }}</span>
+                <span *ngIf="isClickFindNearest && rowDatas.length > 0">
+                  {{ rowData.distance }}
+                </span>
               </div>
             </div>
             <div class="col-md-8">
