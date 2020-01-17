@@ -189,7 +189,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   report() {
-    this.subscription = this.searchService.findAll().subscribe(async result => {
+    this.subscription = this.searchService.exportExcel().subscribe(async result => {
       this.exportExcelService.exportAsExcelFile(result, 'data_teller');
     });
   }

@@ -11,6 +11,7 @@ export class SearchService {
   private TELLER_API = this.API + '/api/v1/tellermgmt/teller';
   private TELLER_DETAILS_API = this.API + '/api/v1/tellermgmt/tellerdetails';
   private SEARCH_TELLER_API = this.API + '/api/v1/tellermgmt/teller/search-map';
+  private EXPORT_EXCEL_API = this.API + '/api/v1/tellermgmt/teller/export-excel';
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +33,10 @@ export class SearchService {
   findNearestLocation(lat: any, lng: any): Observable<any> {
     const data = { lat: lat, lng: lng };
     return this.http.post(this.TELLER_API + '/find-nearest-location', data);
+  }
+
+  exportExcel(): Observable<any> {
+    return this.http.post(this.EXPORT_EXCEL_API, this.getSearchCriteria());
   }
 
   setSearchCriteria(data: any) {

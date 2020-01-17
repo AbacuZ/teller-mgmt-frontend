@@ -17,7 +17,7 @@
           </a>
         </li>
       </ul>
-      <ul class="nav navbar-nav single-nav">
+      <ul class="nav navbar-nav single-nav" *ngIf="userService.getRole() === 'Admin'">
         <li class="nav-border-icon-single">
           <a routerLink="/teller/search">
             <i class="fa fa-plus-circle" aria-hidden="true"></i> Teller Mangement
