@@ -74,4 +74,12 @@ export class SearchService {
     this.result = [];
   }
 
+  setResultLocation(data: any) {
+    this.result = [];
+    this.result = data;
+    this.result.forEach(result => {
+      result.distance = (+result.distance).toFixed(1);
+    });
+  }
+
 }

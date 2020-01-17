@@ -148,10 +148,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   findLocation() {
     this.subscription = this.searchService.findNearestLocation(this.currentLat, this.currentLng).subscribe(async result => {
+      console.log(result);
       this.isClickFindNearest = true;
       this.markers = [];
       this.searchService.clearResult();
-      this.searchService.setResult(result);
+      this.searchService.setResultLocation(result);
       this.setMarkers(result);
       this.rowDatas = this.searchService.getResult();
     });
