@@ -5,6 +5,10 @@ export const dtOptions = {
   searching: false,
   scrollX: false,
   responsive: true,
+  columnDefs: [{
+    'targets': 'no-sort',
+    'orderable': false,
+  }],
   language: {
     info: 'แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว',
     infoEmpty: 'แสดง 0 ถึง 0 จาก 0 แถว',
