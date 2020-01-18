@@ -51,7 +51,7 @@ export class SearchService {
     this.searchCriteria.provinceId = data.province;
     this.searchCriteria.versionTellerId = data.versionTeller;
     this.searchCriteria.brandTellerId = data.brandTellerId;
-    this.searchCriteria.typeTellerId = data.typeTellerId;
+    this.searchCriteria.typeTellerId = null;
   }
 
   getSearchCriteria() {

@@ -69,18 +69,18 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                   <label class="col-form-label">Type :</label>
                   <select 
                     class="form-control" 
-                    formControlName="versionTeller" 
+                    formControlName="typeTellerId" 
                   >
                     <option value="">เลือก</option>
                     <option *ngFor="let typeTeller of typeTellers" [value]="typeTeller.typeTellerId">
                       {{ typeTeller.typeTellerName }}
                     </option>
                   </select>
-                </div>
+                </div> -->
               </div>
               <div class="form-group row">
                 <div class="col-sm-4">
@@ -199,6 +199,9 @@
                 <div class="map-text">Zone: {{ zoneActive.zoneName }}</div>
                 <div class="map-text">Province: {{ provinceActive.provinceNameThai }}</div>
                 <div class="map-text">District: {{ districtActive.districtNameThai }}</div>
+                <div class="map-text">Brand: {{ brandActive.brandTellerName }}</div>
+                <div class="map-text">Version: {{ versionActive.versionTellerName }}</div>
+                <div class="map-text">Type: {{ typeActive.typeTellerName }}</div>
                 <hr>
                 <div class="map-text">IP Address: {{ tellerDetailsActive.ipAddress }}</div>
                 <div class="map-text">IP Gateway: {{ tellerDetailsActive.ipGateway }}</div>

@@ -46,6 +46,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   googleURI: any;
   lastSelectedInfoWindow: any;
   isClickFindNearest: Boolean = false;
+  brandActive: any;
+  versionActive: any;
+  typeActive: any;
 
   constructor(private formBuilder: FormBuilder,
     private dropdownService: DropdownService,
@@ -92,7 +95,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       district: [''],
       versionTeller: [''],
       brandTellerId: [''],
-      typeTellerId: ['']
+      // typeTellerId: ['']
     });
   }
 
@@ -168,6 +171,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.latitude = +this.tellerActive.latitude;
       this.longitude = +this.tellerActive.longitude;
       this.setGoogleURI(this.tellerActive.latitude, this.tellerActive.longitude);
+      this.brandActive = this.brands.find(res => res.brandTellerId === this.tellerActive.brandTellerId);
+      this.versionActive = this.versions.find(res => res.versionTellerId === this.tellerActive.versionTellerId);
+      this.typeActive = this.typeTellers.find(res => res.typeTellerId === this.tellerActive.typeTellerId);
     });
   }
 
